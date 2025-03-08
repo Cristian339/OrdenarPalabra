@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForOf, NgIf, NgStyle} from "@angular/common";
+import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 
 @Component({
   selector: 'app-infantil',
@@ -7,9 +7,10 @@ import {NgForOf, NgIf, NgStyle} from "@angular/common";
   styleUrls: ['./infantil.component.scss'],
   standalone: true,
   imports: [
-    NgStyle,
+    NgClass,
     NgIf,
-    NgForOf
+    NgForOf,
+    NgStyle
   ]
 })
 export class InfantilComponent implements OnInit {
@@ -25,16 +26,35 @@ export class InfantilComponent implements OnInit {
     '¿Quién es esta santa?'
   ];
   imagenes: string[] = [
-    'https://imgs.search.brave.com/6EGAbzhantlEC5TatsmDMuDHbSDO4ER_-anbRj1yy7A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGVwZS5sdC93cC1j/b250ZW50L3VwbG9h/ZHMvc3BhbHZpbnRp/L2FyYWJ1LXN2ZW50/eWtsYS0xMDI0eDY2/NC5qcGcud2VicA',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ignatius_of_Loyola.jpg/200px-Ignatius_of_Loyola.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Sergi_Arola_2012.jpg/200px-Sergi_Arola_2012.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Saint_Rita_of_Cascia.jpg/200px-Saint_Rita_of_Cascia.jpg'
+  ];
+  fondos: string[] = [
+    'https://img.freepik.com/vector-gratis/fondo-dibujado-mano-acuarela-pastel_23-2148902621.jpg',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889930.jpg',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889935.jpg'
   ];
   huecos: string[] = [];
   palabraActualIndex: number = 0;
   mensaje: string = '';
-  fondo: string = '#f4f4f9'; // Color de fondo inicial
+  fondo: string = this.fondos[0]; // Fondo inicial
+  animacion: string = '';
+  puntos: number = 0; // Contador de puntos
 
-  constructor() { }
+  // URLs de sonidos (reemplaza con tus propios archivos si es necesario)
+  sonidoCorrecto: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
+  sonidoIncorrecto: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
+
+  // Objetos de audio para precargar los sonidos
+  audioCorrecto: HTMLAudioElement;
+  audioIncorrecto: HTMLAudioElement;
+
+  constructor() {
+    // Precargar los sonidos
+    this.audioCorrecto = new Audio(this.sonidoCorrecto);
+    this.audioIncorrecto = new Audio(this.sonidoIncorrecto);
+  }
 
   ngOnInit() {
     this.inicializarHuecos();
@@ -63,21 +83,30 @@ export class InfantilComponent implements OnInit {
   verificarRespuesta() {
     const silabasCorrectas = this.silabas[this.palabraActualIndex];
     if (this.huecos.every((hueco, index) => hueco === silabasCorrectas[index])) {
+      this.reproducirSonido(this.audioCorrecto);
       this.mensaje = '¡Correcto!';
-      this.fondo = '#d4edda'; // Fondo verde
+      this.animacion = 'correcto';
+      this.fondo = this.fondos[this.palabraActualIndex]; // Cambiar fondo
+      this.puntos += 10; // Sumar 10 puntos
       setTimeout(() => {
         this.palabraActualIndex++;
         if (this.palabraActualIndex < this.palabras.length) {
           this.inicializarHuecos();
           this.mensaje = '';
-          this.fondo = '#f4f4f9'; // Restaurar fondo inicial
+          this.animacion = '';
         } else {
           this.mensaje = '¡Has completado todas las preguntas!';
         }
       }, 1000);
     } else {
+      this.reproducirSonido(this.audioIncorrecto);
       this.mensaje = 'Incorrecto';
-      this.fondo = '#f8d7da'; // Fondo rojo
+      this.animacion = 'incorrecto';
     }
+  }
+
+  reproducirSonido(audio: HTMLAudioElement) {
+    audio.currentTime = 0; // Reiniciar el sonido si ya estaba reproduciéndose
+    audio.play();
   }
 }

@@ -1,4 +1,9 @@
-<div class="pagina-completa" [ngStyle]="{'background-color': fondo}">
+<div class="pagina-completa" [ngStyle]="{'background-image': 'url(' + fondo + ')'}">
+  <!-- Puntos -->
+  <div class="puntos-container">
+    Puntos: {{ puntos }}
+  </div>
+
   <!-- Pregunta -->
   <div class="pregunta">
     <h1>{{ preguntas[palabraActualIndex] }}</h1>
@@ -32,7 +37,7 @@
   <!-- Botón y mensaje -->
   <div class="acciones-container">
     <button class="boton-verificar" (click)="verificarRespuesta()">Verificar</button>
-    <div *ngIf="mensaje" class="mensaje">
+    <div *ngIf="mensaje" class="mensaje" [ngClass]="animacion">
       {{ mensaje }}
     </div>
   </div>
