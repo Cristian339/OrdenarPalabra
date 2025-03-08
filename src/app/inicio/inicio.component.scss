@@ -1,10 +1,17 @@
+ion-content {
+  background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFsyAyrMswjNI5KhJxMrY5GZwq8YM-Y6MjbPjBpqh_FTzq2L1qVYxYGBtxFNH_PdLQ4GzF0ZpDXqs-utfNE9dRJ4tEcRHaPhUPShuhjP9V0uj8Jhc2NP3d8ny4arXwu0-yCN478g9flAA/s1600/Ignacio+de+Loyola.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: image('src/assets/Imagenes/LibroIluminado.jpg');
+  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
 }
 .input-group {
   width: 80%;
