@@ -1,0 +1,15 @@
+org\example\ordenapalabraback\Service\FraseService.class
+org\example\ordenapalabraback\Repositories\FraseRepository.class
+org\example\ordenapalabraback\DTO\PreguntaDTO.class
+org\example\ordenapalabraback\Controller\SilabaController.class
+org\example\ordenapalabraback\Models\Silaba.class
+org\example\ordenapalabraback\Models\Frase.class
+org\example\ordenapalabraback\Repositories\SilabaRepository.class
+org\example\ordenapalabraback\Controller\PreguntaController.class
+org\example\ordenapalabraback\Enum\Tipo.class
+org\example\ordenapalabraback\Models\Pregunta.class
+org\example\ordenapalabraback\DTO\IntentoSilabaDTO.class
+org\example\ordenapalabraback\Service\PreguntaService.class
+org\example\ordenapalabraback\OrdenaPalabraBackApplication.class
+org\example\ordenapalabraback\Repositories\PreguntaRepository.class
+org\example\ordenapalabraback\Service\SilabaService.class

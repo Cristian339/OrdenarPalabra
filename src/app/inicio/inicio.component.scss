@@ -10,6 +10,8 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
 }
 .input-group {
   width: 80%;
