@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
+  background: image('src/assets/Imagenes/LibroIluminado.jpg');
 }
 .input-group {
   width: 80%;

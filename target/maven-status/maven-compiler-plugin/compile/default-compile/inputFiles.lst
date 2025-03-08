@@ -1,0 +1,16 @@
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Controller\FraseController.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Controller\PreguntaController.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Controller\SilabaController.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\DTO\IntentoSilabaDTO.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\DTO\PreguntaDTO.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Enum\Tipo.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Models\Frase.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Models\Pregunta.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Models\Silaba.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\OrdenaPalabraBackApplication.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Repositories\FraseRepository.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Repositories\PreguntaRepository.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Repositories\SilabaRepository.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Service\FraseService.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Service\PreguntaService.java
+C:\Users\bruno\Desktop\OrdenarPalabra\src\main\java\org\example\ordenapalabraback\Service\SilabaService.java
