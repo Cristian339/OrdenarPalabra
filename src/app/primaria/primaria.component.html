@@ -1,0 +1,17 @@
+<ion-content class="game-container">
+  <h2>{{ groupName }}</h2>
+  <h3>¿Quién es esta persona?</h3>
+  <img src="assets/personaje.png" class="character-image" alt="Personaje" />
+
+  <div class="drag-area">Arrástralas aquí!</div>
+  <div class="drop-container">
+    <div *ngFor="let space of answerSpaces" class="drop-zone" (drop)="drop($event, space)" (dragover)="allowDrop($event)"></div>
+  </div>
+
+  <div class="word-container">
+    <div *ngFor="let word of words" class="word" draggable="true" (dragstart)="drag($event, word)">{{ word }}</div>
+  </div>
+
+  <ion-button (click)="checkAnswer()">Responder</ion-button>
+  <p class="score">Puntuación: {{ score }}</p>
+</ion-content>

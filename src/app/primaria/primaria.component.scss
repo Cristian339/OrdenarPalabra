@@ -1,0 +1,18 @@
+.game-container {
+  text-align: center;
+  padding: 20px;
+  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+}
+.draggable-words {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.answer-slots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
