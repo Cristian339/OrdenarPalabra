@@ -1,18 +1,70 @@
 .game-container {
   text-align: center;
   padding: 20px;
-  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
-  min-height: 100vh;
 }
-.draggable-words {
+
+.drag-area {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.drop-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.drop-zone {
+  border: 2px dashed #19323C;
+  padding: 20px;
+  min-width: 100px;
+  text-align: center;
+  background-color: #5497A7;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.drop-zone:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.word-container {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
 }
-.answer-slots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
+
+.word {
+  background-color: #19323C;
+  color: white;
+  padding: 15px;
+  cursor: grab;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.word:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.score {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.correct {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.incorrect {
+  background-color: #F44336;
+  border-color: #F44336;
 }
