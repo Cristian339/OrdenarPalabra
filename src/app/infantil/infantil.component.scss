@@ -173,3 +173,18 @@ h1 {
     transform: translateX(10px);
   }
 }
+
+.nombre-grupo {
+  text-align: center;
+  margin-top: 20px; // Margen superior
+  color: #fff; // Texto blanco
+  font-family: 'Fredoka One', cursive; // Fuente infantil
+  font-size: 2.5em; // Tamaño del texto
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    3px 3px 0 #000; // Borde negro simulando con sombra
+  letter-spacing: 2px; // Espaciado entre letras
+  margin-bottom: 10px; // Margen inferior
+}
