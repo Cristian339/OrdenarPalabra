@@ -1,27 +1,29 @@
 import { Component } from '@angular/core';
-import { NavController, IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import {IonicModule} from "@ionic/angular";
+import {FormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss'],
-  standalone: true,
   imports: [
+    CommonModule,
     IonicModule,
     FormsModule
-  ]
+  ],
+  styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent {
   groupName: string = '';
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private router: Router) {}
 
-  startGame(level: string) {
+  goToPage(page: string) {
     if (this.groupName.trim()) {
-      this.navCtrl.navigateForward(['/primario'], {
-        queryParams: { group: this.groupName, level: level }
-      });
+      this.router.navigate([page], { queryParams: { groupName: this.groupName } });
+    } else {
+      alert('Por favor, ingresa un nombre de grupo.');
     }
   }
 }

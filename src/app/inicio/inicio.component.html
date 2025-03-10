@@ -1,10 +1,15 @@
-<ion-content class="home-container fullscreen-background">
-  <div class="card">
-    <h2>Nombre de Grupo</h2>
-    <ion-input [(ngModel)]="groupName" class="input-group" placeholder="Escribe aquí..."></ion-input>
-    <div class="button-container">
-      <ion-button href = 'infantil'>Infantil</ion-button>
-      <ion-button href = 'primaria'>Primaria</ion-button>
+<ion-content class="home-container">
+  <div class="background">
+    <div class="card">
+      <h2 class="title">Nombre de Grupo</h2>
+      <div class="input-container">
+        <ion-icon name="pencil" class="input-icon"></ion-icon>
+        <ion-input [(ngModel)]="groupName" class="input-group" placeholder="Escribe aquí..."></ion-input>
+      </div>
+      <div class="button-container">
+        <ion-button (click)="goToPage('infantil')" class="custom-button">Infantil</ion-button>
+        <ion-button (click)="goToPage('primaria')" class="custom-button">Primaria</ion-button>
+      </div>
     </div>
   </div>
 </ion-content>

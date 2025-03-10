@@ -1,27 +1,80 @@
-ion-content {
-  background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFsyAyrMswjNI5KhJxMrY5GZwq8YM-Y6MjbPjBpqh_FTzq2L1qVYxYGBtxFNH_PdLQ4GzF0ZpDXqs-utfNE9dRJ4tEcRHaPhUPShuhjP9V0uj8Jhc2NP3d8ny4arXwu0-yCN478g9flAA/s1600/Ignacio+de+Loyola.jpg') no-repeat center center/cover;
-  min-height: 100vh;
-  width: 100%;
+.home-container {
+  --background: #ffffff;
+}
+
+.background {
+  background-image: url('src/assets/Imagenes/palomas.webp'); // Fondo infantil
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
   height: 100%;
-  opacity: 0.85;
-}
-.page-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: url('/assets/Imagenes/LibroIluminado.jpg') no-repeat center center/cover;
+  align-items: center;
+  padding: 20px;
 }
-.input-group {
-  width: 80%;
-  max-width: 400px;
-  margin: 20px 0;
+
+.card {
+  background: #fffcf5; // Color crema suave
+  padding: 35px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  border: 4px solid #f4b400; // Amarillo vibrante
+  max-width: 400px; // Más ancho
+  width: 90%;
 }
-.button-group {
+
+.title {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #f47c00; // Naranja vibrante
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
   display: flex;
-  gap: 15px;
+  align-items: center;
+  background: white;
+  border: 3px solid #4caf50; // Verde llamativo
+  border-radius: 12px;
+  padding: 12px;
 }
-.button-group button {
-  flex: 1;
+
+.input-group {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 14px;
+  font-size: 18px;
+  color: #333;
+  background: transparent;
+}
+
+.input-icon {
+  color: #4caf50;
+  font-size: 26px;
+  margin-right: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+.custom-button {
+  background-color: #ff4081; // Rosa vibrante
+  color: white;
+  width: 140px; // Más grande
+  height: 50px; // Botones más grandes
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.custom-button:nth-child(2) {
+  background-color: #03a9f4; // Azul vibrante
 }
