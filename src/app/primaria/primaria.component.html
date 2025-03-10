@@ -1,19 +1,95 @@
-<ion-content class="game-container">
-  <h2>{{ groupName }}</h2>
-  <h3>{{ questions[currentQuestionIndex].question }}</h3>
-  <img [src]="questions[currentQuestionIndex].image" class="character-image" alt="Personaje" />
+<div class="game-container" [ngStyle]="{'background-image': 'url(' + currentBackground + ')'}">
+  <!-- Top navigation bar with question number, group name and attempts -->
+  <div class="top-nav">
+    <div class="question-number">
+      <span class="label">Pregunta</span>
+      <span class="current">{{ currentQuestionNumber }}</span>/<span class="total">{{ totalQuestions }}</span>
+    </div>
 
-  <div class="drag-area">Arrástralas aquí!</div>
-  <div class="drop-container">
-    <div *ngFor="let slot of answerSlots; let i = index" class="drop-zone" [ngClass]="feedback[i]" (drop)="drop($event, i)" (dragover)="allowDrop($event)">
-      {{ slot }}
+    <div class="group-name">{{ groupName }}</div>
+
+    <div class="attempts-container">
+      <div class="heart-container" *ngFor="let attempt of [].constructor(attemptsLeft)">
+        <ion-icon name="heart" class="attempt-icon"></ion-icon>
+      </div>
+      <span class="attempts-text">{{ attemptsLeft }}</span>
     </div>
   </div>
 
-  <div class="word-container">
-    <div *ngFor="let word of words" class="word" draggable="true" (dragstart)="drag($event, word)">{{ word }}</div>
+  <!-- Question text -->
+  <div class="question-text">{{ questions[currentQuestionIndex].question }}</div>
+
+  <!-- Character image -->
+  <div class="character-container">
+    <img [src]="questions[currentQuestionIndex].image" class="character-image" alt="Imagen">
   </div>
 
-  <ion-button (click)="checkAnswer()">Responder</ion-button>
-  <p class="score">Puntuación: {{ score }}</p>
-</ion-content>
+  <!-- Word ordering area - horizontal layout -->
+  <div class="word-ordering-area">
+    <!-- Answer slot area -->
+    <div class="answer-slots-container">
+      <div *ngFor="let slot of answerSlots; let i = index"
+           class="answer-slot"
+           [ngClass]="{'highlight': isDraggedOver === i, 'correct': feedback[i] === 'correct', 'incorrect': feedback[i] === 'incorrect'}"
+           (drop)="drop($event, i)"
+           (dragover)="allowDrop($event); setDraggedOver(i)"
+           (dragleave)="setDraggedOver(-1)"
+           draggable="true"
+           (dragstart)="slot ? drag($event, slot, i) : null">
+        {{ slot }}
+      </div>
+    </div>
+
+    <!-- Word bank area -->
+    <div class="word-bank" (dragover)="allowDrop($event)" (drop)="dropToPool($event)">
+      <div *ngFor="let word of words"
+           class="word-item"
+           draggable="true"
+           (dragstart)="drag($event, word)">
+        {{ word }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Control buttons -->
+  <div class="controls-container">
+    <ion-button class="check-button" (click)="checkAnswer()" [disabled]="attemptsLeft <= 0">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      Comprobar
+    </ion-button>
+
+    <ion-button class="reset-button" (click)="resetQuestion()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Reiniciar
+    </ion-button>
+  </div>
+
+  <!-- Score display -->
+  <div class="score-display">
+    <p>Puntuación: <span class="score-value">{{ score }}</span></p>
+    <div class="stars">
+      <ion-icon name="star" class="star-icon" *ngFor="let star of getStars()"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Feedback bar -->
+  <div class="feedback-bar" *ngIf="showFeedbackModal" [ngClass]="{'show': showFeedbackModal}">
+    <ion-icon [name]="feedbackIcon" class="feedback-icon"></ion-icon>
+    <p class="feedback-message">{{ feedbackMessage }}</p>
+  </div>
+
+  <!-- Success modal -->
+  <div class="modal-overlay" *ngIf="showSuccessModal">
+    <div class="success-modal">
+      <ion-icon name="trophy" class="success-icon"></ion-icon>
+      <h2>¡Muy bien!</h2>
+      <div class="question-info">Pregunta {{ currentQuestionNumber }} de {{ totalQuestions }}</div>
+      <p>Tu puntuación: <span class="highlight-score">{{ score }}</span></p>
+      <p>Puntuación máxima posible: <span class="highlight-score">{{ currentMaxScore }}</span></p>
+      <ion-button class="next-button" (click)="nextQuestion()">
+        <ion-icon name="arrow-forward" slot="start"></ion-icon>
+        Siguiente pregunta
+      </ion-button>
+    </div>
+  </div>
+</div>
