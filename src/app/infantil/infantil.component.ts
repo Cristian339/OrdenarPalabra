@@ -17,8 +17,8 @@ import { ActivatedRoute } from "@angular/router";
 export class InfantilComponent implements OnInit {
   palabras: string[] = [
     'LOYOLA', 'CABALLERO', 'PAMPLONA', 'LIBROS SANTOS', 'JERUSALÉN', 'JESUITAS',
-    'UN LIBRO', 'CORDERO', 'SOLDADO', 'SAN PEDRO', 'REZÓ MUCHO', 'CONTEMPLAR',
-    'CAMISA', 'LOS CUIDÓ', 'SÍGUEME', 'ESTUDIÓ', 'SERVIRLE', 'FUNDÓ IGLESIAS',
+    'UN LIBRO', 'CORDERO', 'SOLDADO', 'SAN PEDRO', 'REZÓ MUCHO', 'ORANDO',
+    'CAMISA', 'CUIDARLOS', 'SÍGUEME', 'ESTUDIÓ', 'SERVIRLE', 'IGLESIAS',
     'HABLAR DE DIOS', 'REZÓ POR TODOS'
   ];
 
@@ -35,13 +35,13 @@ export class InfantilComponent implements OnInit {
     ['SOL', 'DO', 'DA'], // FUE SOLDADO
     ['PE', 'SAN', 'DRO'], // SAN PEDRO
     ['ZÓ', 'RE', 'CHO', 'MU'], // REZÓ MUCHO
-    ['TEM', 'CON', 'PLAR'], // CONTEMPLAR
+    ['RAN', 'DO', 'O'], // CONTEMPLAR
     ['CA','SA', 'MI'], // SU CAMISA
-    ['CUI', 'LOS', 'DÓ'], // LOS CUIDÓ
+    ['CUI', 'LOS', 'DAR'], // LOS CUIDÓ
     ['GUE', 'SÍ', 'ME'], // SÍGUEME
     ['TU', 'ES', 'DIÓ'], // ESTUDIÓ
     ['VIR', 'SER', 'LE'], // SERVIRLE
-    ['DÓ', 'FUN', 'SIAS', 'I', 'GLE'], // FUNDÓ IGLESIAS
+    ['SIAS', 'I', 'GLE'], // FUNDÓ IGLESIAS
     ['BLAR', 'HA', 'DIOS', 'DE'], // HABLAR DE DIOS
     ['ZÓ', 'RE', 'DOS', 'POR', 'TO'] // REZÓ POR TODOS
   ];
@@ -59,13 +59,13 @@ export class InfantilComponent implements OnInit {
     ['SOL', 'DA', 'DO'], // FUE SOLDADO
     ['SAN', 'PE', 'DRO'], // SAN PEDRO
     ['RE', 'ZÓ', 'MU', 'CHO'], // REZÓ MUCHO
-    ['CON', 'TEM', 'PLAR'], // CONTEMPLAR
+    ['O', 'RAN', 'DO'], // CONTEMPLAR CAMBIAR
     ['CA', 'MI', 'SA'], // SU CAMISA
-    ['LOS', 'CUI', 'DÓ'], // LOS CUIDÓ
+    ['CUI', 'DAR', 'LOS'], // LOS CUIDÓ CAMBIAR
     ['SÍ', 'GUE', 'ME'], // SÍGUEME
     ['ES', 'TU', 'DIÓ'], // ESTUDIÓ
     ['SER', 'VIR', 'LE'], // SERVIRLE
-    ['FUN', 'DÓ', 'I', 'GLE', 'SIAS'], // FUNDÓ IGLESIAS
+    ['I', 'GLE', 'SIAS'], // FUNDÓ IGLESIAS
     ['HA', 'BLAR', 'DE', 'DIOS'], // HABLAR DE DIOS
     ['RE', 'ZÓ', 'POR', 'TO', 'DOS'] // REZÓ POR TODOS
   ];
@@ -82,7 +82,7 @@ export class InfantilComponent implements OnInit {
     '¿Qué hizo San Ignacio antes de ser sacerdote?',
     '¿A qué santo le rezaba San Ignacio?',
     '¿Qué hizo San Ignacio en Manresa?',
-    '¿Qué le gustaba hacer a San Ignacio en la naturaleza?',
+    '¿Cómo contemplaba San Ignacio la naturaleza?',
     '¿Qué le regaló San Ignacio a un niño pobre?',
     '¿Qué hizo San Ignacio para ayudar a los enfermos?',
     '¿Qué le dijo Jesús a San Ignacio en una visión?',
@@ -93,26 +93,27 @@ export class InfantilComponent implements OnInit {
     '¿Qué hizo San Ignacio antes de morir?'
   ];
   imagenes: string[] = [
-    'https://ejemplo.com/castillo-loyola.jpg',
-    'https://ejemplo.com/caballero.jpg',
-    'https://ejemplo.com/batalla-pamplona.jpg',
-    'https://ejemplo.com/libros-santos.jpg',
-    'https://ejemplo.com/jerusalen.jpg',
-    'https://ejemplo.com/jesuitas.jpg',
-    'https://ejemplo.com/ejercicios-espirituales.jpg',
-    'https://ejemplo.com/cordero.jpg',
-    'https://ejemplo.com/soldado.jpg',
-    'https://ejemplo.com/san-pedro.jpg',
-    'https://ejemplo.com/rezar.jpg',
-    'https://ejemplo.com/naturaleza.jpg',
-    'https://ejemplo.com/camisa.jpg',
-    'https://ejemplo.com/enfermos.jpg',
-    'https://ejemplo.com/sigueme.jpg',
-    'https://ejemplo.com/paris.jpg',
-    'https://ejemplo.com/servir.jpg',
-    'https://ejemplo.com/iglesia.jpg',
-    'https://ejemplo.com/amigos.jpg',
-    'https://ejemplo.com/morir.jpg'
+    'https://imgs.search.brave.com/9uZ-IF-ViKXo9HpfsXk1A3pMBV435f1mlJjWKtNNO98/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9mb3Rv/Z3JhZmlhcy5sYXNl/eHRhLmNvbS9jbGlw/cGluZy9jbXNpbWFn/ZXMwMi8yMDIzLzA5/LzIwLzVGNTUyMjMz/LTM1Q0YtNDNFMi1B/MjBBLUEyQjQ1MEIx/NzU0NC9zYW50dWFy/aW8tbG95b2xhXzk4/LmpwZz9jcm9wPTEy/ODAsNzIwLHgwLHkx/MjAmd2lkdGg9MTkw/MCZoZWlnaHQ9MTA2/OSZvcHRpbWl6ZT1o/aWdoJmZvcm1hdD13/ZWJwbHk',
+    'https://imgs.search.brave.com/AiB7AakNOXZ5paaFfUZGnMqVFMFoQnV5-wdzsbHM23A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA5/NDg0MTg3OC9lcy92/ZWN0b3IvY2FiYWxs/ZXJvLWNvbi1sYW56/YS1jYWJhbGxvLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1X/ZW1zR3N6NUl3bnFQ/eFFaM1oybFFZcXFq/ODVMQVEyQUgwclN1/M090S1FrPQ',
+    'https://imgs.search.brave.com/RPJykz0TT3ShzO_jhCT_WPXY9r9QtcFfYXiaoRf7Ag4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vMjcyOC8x/MzIxMTQ1OTY2NV81/ZTMyZWIyNDQ2Lmpw/Zw',
+    'https://imgs.search.brave.com/ln2J0GFiFWRx2wFw-71wk-9YXX5QtnpeIgd1W3WJjDE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFVbktyUjRPWEwu/anBn',
+    'https://imgs.search.brave.com/hdvqN4Jcr3zPeeF4d4NPDHAyDCCkubkysNOpVUjTQ94/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTYw/OTQ1MTYzL2VzL2Zv/dG8vamVydXNhbCVD/MyVBOW4uanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPWFkQXpC/SFNkdXY4WXlqdTUz/ZG5qZTgwRllwdElO/bWZIV2g0UU4tNU14/UEE9',
+    'https://imgs.search.brave.com/C5y5t9T69G8CmWJ12hJ9wmCtT02F8h4pgXeWajCdIYk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9nY2xv/eW9sYS5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMTkvMTEv/NjczMS1Mb3MtamVz/dWl0YXMuanBn',
+    'https://imgs.search.brave.com/6LwEU6XKuShO-hAQOUenxiKKYUGYj-UK7FE2RihxMdw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTgy/Njc1NzQyL3Bob3Rv/L2Jvb2tzLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz05aVhS/ZE1zM3NOMjVpSHll/NWtBRkJxRDRUcjFJ/VlI0SVk4Z1hHOGJr/VE1VPQ',
+    'https://imgs.search.brave.com/uN901SEaHwFNdN_IdtQsj3-4l_oyg3O6i8S8pG30W2Q/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9lbm1l/cmpvc2EuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE1LzA1/LzE1LUNvcmRlcm8t/NjAweDI3MC5qcGc',
+    'https://imgs.search.brave.com/Wt3JM0vf_48iJOxBkH2s-Ib8sVM8O0lCbxnrjSxbQQY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNTIx/NjQ1NDMwL2VzL2Zv/dG8vc2lsaG91ZXR0/ZS1vZi1zb2xkaWVy/cy5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9dFlsaElXTTF3/YWY4WDdEWVpPUk9R/M0hzX19fVGJZQWlC/Z0xJamFpc1NzYz0',
+    'https://imgs.search.brave.com/q_SRrOLfYPcm7qhbBSpmtQSLaH3-Z8Yfo4q8uJH4Q64/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2FucGVkcm9hcG9z/dG9sLmVzL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIxLzAzL3Nh/bi1wZWRyby5qcGc',
+    'https://imgs.search.brave.com/SImlby9nFK4d-63Edld5nPAimP9Pi912-YclXOvf3pc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8x/LzEwL1NBU1NPRkVS/UkFUT18tX1Zpcmdl/bl9yZXphbmRvXyhO/YXRpb25hbF9HYWxs/ZXJ5LF9Mb25kcmVz/LF8xNjQwLTUwKS5q/cGc',
+    'https://imgs.search.brave.com/O3SKL9a0cAePuYSxdl-2y36CVFH6qB2IEUF8lbb_gRQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ1/NjQzODQ2OC9lcy9m/b3RvL3BhcmVqYS1v/cmFuZG8tanVudG9z/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1mdXVQZjdQS2lT/NG9EakV0T1BqRVVu/R1lmV2JtTDh3Yjdh/QUJLQ3ZIS0lBPQ',
+    'https://imgs.search.brave.com/RVFnjJbB4o0zTIcke3N4S4QhaX5uN986nuNshnCpG0E/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTY1/OTY5ODI2L2VzL3Zl/Y3Rvci9ob21icmVz/LWRlLWNhbWlzZXRh/cy1kaWJ1am8uanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPVdi/Q3M2bER2VDNvTW1C/ZFl6SVZxMVJnMUpQ/Z0doTkNqcVBjSlh0/a05oUXM9',
+    'https://imgs.search.brave.com/mpq1jqujVQ31SKRQd9NzF2RlFQf31BTSWuuez5vK_uY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTY1/NzI4MzA5L2VzL3Zl/Y3Rvci9sb3MtY3Vp/ZGFkb3Jlcy5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9elhW/Q1FNNDllNGdzN1Zt/RUxPQUVDN0s4aFFE/SGlkY2ZBRGVBNURl/NzM0ND0',
+    'https://imgs.search.brave.com/G_s_o2Gz6671gHWt9IYxrNTL_ec3zlB7pUDoP2IQkcw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVjdG9yLXByZW1p/dW0vY3Jpc3RpYW5v/cy1qZXN1cy1wcmVk/aWNhbmRvLWNvbG9y/ZWFyLXBhZ2luYS1u/aW5vc185NTE3Nzgt/OTA0OS5qcGc_c2Vt/dD1haXNfaHlicmlk',
+    'https://imgs.search.brave.com/bYIDr0wlOS5Mn2IUSImTcDOE5f4SO3uxv6uUE_AY3hU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90by1ncmF0aXMv/ZXN0dWRpYW50ZS1k/YW1hLWVzY3JpYmll/bmRvLWN1YWRlcm5v/LWFiaWVydG8tbGFw/aXpfMTE2My0yNTQ2/LmpwZz9zZW10PWFp/c19oeWJyaWQ',
+    'https://imgs.search.brave.com/dbDo-10CqN03n-o3mDL01XSCN-dfKnfvnRpM1Tq_YQ0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly92ZXJz/aWN1bG9zLm5ldC93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMS8x/MC9WZXJzaWN1bG9z/LXBhcmEtaG9ucmFy/LWEtbG9zLVBhZHJl/cy0zMDB4MjAwLmpw/Zw',
+    'https://imgs.search.brave.com/03yP3e_YdoHVjsf9y8Yqt8oRO20BtiRC3I-e0VZP24M/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmFybmFjZW50cmUu/Y29tL21lZGlhL2Jh/cm5hY2VudHJlL2lt/YWdlL3R1cmlzbW8v/MTJfRm90by4xNTgz/MTY2MDY5LmpwZw',
+    'https://imgs.search.brave.com/EbBPBrfXgSv9_i-qRTlS1cgscYjXBEZfRJRRsd1CWSo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9hbWlnYWJsZS1m/aWd1cmEtZGlvcy1k/aWJ1am9zLWFuaW1h/ZG9zLWJyYXpvcy1h/YmllcnRvc185ODE2/NjgtMTI5MTYuanBn/P3NlbXQ9YWlzX2h5/YnJpZA',
+    'https://imgs.search.brave.com/w-IHrB-lRkQn73Y72k1o6hi-ClxxtDMBWU1lh_LBsMI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zLnlp/bWcuY29tL255L2Fw/aS9yZXMvMS4yL1N0/aVd2TDEwZDllRnpu/ZTVUUE1hY0EtLS9Z/WEJ3YVdROWFHbG5h/R3hoYm1SbGNqdDNQ/VEV5TkRJN2FEMDRN/amctL2h0dHBzOi8v/bWVkaWEuemVuZnMu/Y29tL2VzL2xhbmFj/aW9uLmNvbS5hci83/YmJmNTQwNmFhODRm/NjBiZGJhYmI5MTA2/ODA3YjBmZA.jpeg',
+    'https://imgs.search.brave.com/cYjxnvFfLLeGevVENHSq98ethjF5Rbi-MGUhrXd0x-I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2VzdGFzZGVtaW1i/cmUuY29tL3VwbG9h/ZHMvY2VzdGFzZGVt/aW1icmUvcHJvZHVj/dG9zL21fNzUwNDdf/VGFyamV0YV9lbmhv/cmFidWVuYV9mbG9y/ZXMuanBn'
   ];
   fondos: string[] = [
     'https://img.freepik.com/vector-gratis/fondo-acuarela-nubes-arcoiris_23-2148889945.jpg',
