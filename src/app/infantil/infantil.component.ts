@@ -1,6 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
+import {IonicModule} from "@ionic/angular";
+import {addIcons} from "ionicons";
+import {
+  arrowForward,
+  checkmarkCircleOutline,
+  heart,
+  homeOutline,
+  refreshCircle,
+  refreshOutline,
+  star,
+  trophy
+} from "ionicons/icons";
 
 @Component({
   selector: 'app-infantil',
@@ -11,7 +23,8 @@ import { ActivatedRoute } from "@angular/router";
     NgClass,
     NgIf,
     NgForOf,
-    NgStyle
+    NgStyle,
+    IonicModule
   ]
 })
 export class InfantilComponent implements OnInit {
@@ -146,6 +159,9 @@ export class InfantilComponent implements OnInit {
   puntos: number = 0;
   groupName: string = '';
   intentosFallidos: number = 0;
+  showInfoModal: boolean = true;
+  hasShownInfoModal: boolean = false;
+  infoImage: string = '/assets/Menu/Comentario.png';
 
   sonidoCorrecto: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
   sonidoIncorrecto: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
@@ -156,13 +172,26 @@ export class InfantilComponent implements OnInit {
   audioIncorrecto: HTMLAudioElement;
   dragSound: HTMLAudioElement;
   dropSound: HTMLAudioElement;
-
+  backgroundMusic: HTMLAudioElement;
 
   constructor(private route: ActivatedRoute) {
+    addIcons({
+      checkmarkCircleOutline,
+      refreshOutline,
+      trophy,
+      arrowForward,
+      heart,
+      star,
+      'home-outline': homeOutline,
+      'refresh-outline': refreshCircle
+    });
     this.audioCorrecto = new Audio(this.sonidoCorrecto);
     this.audioIncorrecto = new Audio(this.sonidoIncorrecto);
     this.dragSound = new Audio(this.dragSoundUrl);
     this.dropSound = new Audio(this.dropSoundUrl);
+    this.backgroundMusic = new Audio('assets/sonidos/happy-kids-music-307326.mp3');
+    this.backgroundMusic.loop = true;
+    this.backgroundMusic.volume = 0.1;
   }
 
   ngOnInit() {
@@ -173,6 +202,12 @@ export class InfantilComponent implements OnInit {
 
     this.inicializarHuecos();
   }
+
+
+  playBackgroundMusic() {
+    this.backgroundMusic.play().catch(err => console.error('Error playing music:', err));
+  }
+
 
   inicializarHuecos() {
     this.huecos = Array(this.silabas[this.palabraActualIndex].length).fill('');
@@ -318,5 +353,11 @@ export class InfantilComponent implements OnInit {
   reproducirSonido(audio: HTMLAudioElement) {
     audio.currentTime = 0;
     audio.play();
+  }
+
+  closeInfoModal(): void {
+    this.showInfoModal = false;
+    this.hasShownInfoModal = true;
+    this.playBackgroundMusic();
   }
 }

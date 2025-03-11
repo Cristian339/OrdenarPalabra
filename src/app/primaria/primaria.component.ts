@@ -186,6 +186,8 @@ export class PrimariaComponent implements OnInit {
   correctSound: HTMLAudioElement;
   incorrectSound: HTMLAudioElement;
   checkSound: HTMLAudioElement;
+  backgroundMusic: HTMLAudioElement;
+  // Touch handling
 
 
 
@@ -213,6 +215,9 @@ export class PrimariaComponent implements OnInit {
     this.incorrectSound = new Audio(this.incorrectSoundUrl);
     this.checkSound = new Audio(this.checkSoundUrl);
 
+    this.backgroundMusic = new Audio('assets/sonidos/happy-kids-music-307326.mp3');
+    this.backgroundMusic.loop = true;
+    this.backgroundMusic.volume = 0.4;
 
 
 
@@ -228,6 +233,10 @@ export class PrimariaComponent implements OnInit {
     });
   }
 
+
+  playBackgroundMusic() {
+    this.backgroundMusic.play().catch(err => console.error('Error playing music:', err));
+  }
   shuffleQuestions(): void {
     for (let i = this.questions.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -673,6 +682,7 @@ export class PrimariaComponent implements OnInit {
     this.playSound('check');
     this.showInfoModal = false;
     this.hasShownInfoModal = true;
+    this.playBackgroundMusic();
   }
 
 
