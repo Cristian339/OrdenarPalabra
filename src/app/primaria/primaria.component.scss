@@ -181,14 +181,11 @@
 }
 
 .character-container {
-  width: 200px;
-  height: 200px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 20px var(--shadow-color);
-  margin: 15px auto;
-  background: #3a5573;
-  padding: 5px;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  max-height: 50vh;
   transform: rotate(-2deg);
   transition: transform 0.3s ease;
 }

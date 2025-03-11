@@ -1,4 +1,4 @@
-<!-- Info modal that shows on game start -->
+
 <div class="modal-overlay" *ngIf="showInfoModal && !hasShownInfoModal">
   <div class="info-modal">
     <div class="info-image-container">
@@ -19,7 +19,7 @@
 </div>
 
 <div class="game-container" [ngStyle]="{'background-image': 'url(' + currentBackground + ')'}">
-  <!-- Top navigation bar with question number, group name and attempts -->
+
   <div class="top-nav">
     <div class="question-number">
       <span class="label">Pregunta</span>
@@ -38,17 +38,17 @@
 
 
 
-  <!-- Question text -->
+
   <div class="question-text">{{ questions[currentQuestionIndex].question }}</div>
 
-  <!-- Character image -->
+
   <div class="character-container">
     <img [src]="questions[currentQuestionIndex].image" class="character-image" alt="Imagen">
   </div>
 
-  <!-- Word ordering area - horizontal layout -->
+
   <div class="word-ordering-area">
-    <!-- Answer slot area -->
+
     <div class="answer-slots-container">
       <div *ngFor="let slot of answerSlots; let i = index"
            class="answer-slot"
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <!-- Word bank area -->
+
     <div class="word-bank" (dragover)="allowDrop($event)" (drop)="dropToPool($event)">
       <div *ngFor="let word of words"
            class="word-item"
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <!-- Control buttons -->
+
   <div class="controls-container">
     <ion-button class="check-button" (click)="checkAnswer()" [disabled]="attemptsLeft <= 0">
       <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
@@ -86,7 +86,7 @@
     </ion-button>
   </div>
 
-  <!-- Score display -->
+
   <div class="score-display">
     <p>Puntuación: <span class="score-value">{{ score }}</span></p>
     <div class="stars">
@@ -94,13 +94,13 @@
     </div>
   </div>
 
-  <!-- Feedback bar -->
+
   <div class="feedback-bar" *ngIf="showFeedbackModal" [ngClass]="{'show': showFeedbackModal}">
     <ion-icon [name]="feedbackIcon" class="feedback-icon"></ion-icon>
     <p class="feedback-message">{{ feedbackMessage }}</p>
   </div>
 
-  <!-- Success modal -->
+
   <div class="modal-overlay" *ngIf="showSuccessModal">
     <div class="success-modal">
       <ion-icon name="trophy" class="success-icon"></ion-icon>
@@ -114,4 +114,29 @@
       </ion-button>
     </div>
   </div>
+
+
+    <div class="modal-overlay" *ngIf="showFinalModal">
+        <div class="final-modal">
+            <ion-icon name="trophy" class="success-icon"></ion-icon>
+            <h2>¡Juego Completado!</h2>
+            <p>Has completado todas las preguntas sobre San Ignacio de Loyola</p>
+            <div class="score-summary">
+                <p>Preguntas respondidas: <span class="highlight-score">{{ totalQuestions }}</span> de <span class="highlight-score">{{ totalQuestions }}</span></p>
+                <p>Puntuación final: <span class="highlight-score">{{ score }}</span></p>
+                <p>Puntuación máxima posible: <span class="highlight-score">{{ totalQuestions * 10 }}</span></p>
+            </div>
+            <div class="stars">
+                <ion-icon name="star" class="star-icon" *ngFor="let star of getStars()"></ion-icon>
+            </div>
+            <ion-button class="restart-button" (click)="restartGame()">
+                <ion-icon name="refresh-outline" slot="start"></ion-icon>
+                Jugar de nuevo
+            </ion-button>
+            <ion-button class="home-button" href="/inicio">
+                <ion-icon name="home-outline" slot="start"></ion-icon>
+                Volver al inicio
+            </ion-button>
+        </div>
+    </div>
 </div>

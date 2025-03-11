@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
-import { arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star } from "ionicons/icons";
+import { arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star, homeOutline, refreshCircle } from "ionicons/icons";
 import { addIcons } from "ionicons";
 
 @Component({
@@ -37,117 +37,128 @@ export class PrimariaComponent implements OnInit {
   totalQuestions: number = 0;
   showInfoModal: boolean = true;
   hasShownInfoModal: boolean = false;
-  infoImage: string = 'assets/Menu/Comentario.png';
+  infoImage: string = '/assets/Menu/Comentario.png';
+  showFinalModal: boolean = false;
 
   backgroundImages: string[] = [
-    'https://img.freepik.com/vector-gratis/fondo-dibujado-mano-acuarela-pastel_23-2148902621.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889930.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889935.jpg',
-    'https://img.freepik.com/free-vector/hand-drawn-cartoon-background_52683-30786.jpg',
-    'https://img.freepik.com/free-vector/rainbow-sky-background_23-2148995842.jpg',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://static.wixstatic.com/media/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg/v1/fill/w_725,h_559,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://imgs.search.brave.com/TCpwFje-8kTX-mHu69PrlvJtXlGFhPjReUoxxHAIi6I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM3/MDkxNjUwMy9lcy9m/b3RvL2NoaWxkcy1k/cmF3aW5nLW9mLXN1/bnMtc2VhbWxlc3Mt/cGF0dGVybi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WGF3/QXIwanZoX2FTcXdk/VEJLa0l4OUU4Q3pu/NEk1LWp4SW1qdHNm/Y0w2cz0\n',
+    'https://imgs.search.brave.com/Gzo2M3ot-YWA3s19Iq5zQm250ci5Rt7C2oe7eNqtvKA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHNkLWdyYXRpcy9m/b25kby1tYXRlcm5p/ZGFkLWJhYnktc2hv/d2VyXzIzLTIxNTAy/MzcyMzEuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9'
   ];
   currentBackground: string = '';
 
   questions: any[] = [
     {
-      question: '¿Dónde nació San Ignacio?',
-      correctAnswer: 'San Ignacio nació en España',
-      image: 'assets/images/spain.jpg'
+      question: '¿En qué lugar nació San Ignacio de Loyola?',
+      correctAnswer: 'San Ignacio nació en Azpeitia en España',
+      image: '/assets/ImagenesPreg/1.jpg'
     },
     {
-      question: '¿Qué organización fundó San Ignacio?',
-      correctAnswer: 'San Ignacio fundó la Compañía de Jesús',
-      image: 'assets/images/jesuit-symbol.jpg'
+      question: '¿En qué año nació San Ignacio?',
+      correctAnswer: 'San Ignacio nació en el año 1491',
+      image: '/assets/ImagenesPreg/2.jpg'
     },
     {
-      question: '¿Qué obra importante escribió San Ignacio?',
+      question: '¿Cómo se llamaba San Ignacio antes de ser santo?',
+      correctAnswer: 'Se llamaba Íñigo López de Loyola',
+      image: '/assets/ImagenesPreg/3.jpg'
+    },
+    {
+      question: '¿Qué soñaba ser San Ignacio cuando era joven?',
+      correctAnswer: 'San Ignacio soñaba ser un soldado valiente',
+      image: '/assets/ImagenesPreg/4.jpg'
+    },
+    {
+      question: '¿Cómo resultó herido San Ignacio?',
+      correctAnswer: 'San Ignacio fue herido por una bala de cañón',
+      image: '/assets/ImagenesPreg/5.jpg'
+    },
+    {
+      question: '¿Qué hizo mientras se recuperaba de su herida?',
+      correctAnswer: 'San Ignacio leyó sobre Jesús y los santos',
+      image: '/assets/ImagenesPreg/6.jpg'
+    },
+    {
+      question: '¿Qué decidió hacer después de leer esos libros?',
+      correctAnswer: 'San Ignacio decidió seguir a Dios',
+      image: '//assets/ImagenesPreg/7.jpg'
+    },
+    {
+      question: '¿Qué importante libro escribió en Manresa?',
       correctAnswer: 'San Ignacio escribió los Ejercicios Espirituales',
-      image: 'assets/images/spiritual-exercises.jpg'
+      image: '/assets/ImagenesPreg/8.jpg'
     },
     {
-      question: '¿Qué fue San Ignacio en la Iglesia?',
-      correctAnswer: 'San Ignacio fue un santo católico',
-      image: 'assets/images/st-ignatius.jpg'
-    },
-    {
-      question: '¿Qué profesión tuvo San Ignacio durante su juventud?',
-      correctAnswer: 'De joven, San Ignacio fue soldado',
-      image: 'assets/images/soldier.jpg'
-    },
-    {
-      question: '¿De quién son seguidores los jesuitas?',
-      correctAnswer: 'Los jesuitas son seguidores de San Ignacio',
-      image: 'assets/images/jesuits.jpg'
-    },
-    {
-      question: '¿Dónde realizó sus estudios San Ignacio?',
+      question: '¿A qué ciudad fue a estudiar San Ignacio?',
       correctAnswer: 'San Ignacio estudió en la Universidad de París',
-      image: 'assets/images/paris-university.jpg'
+      image: '/assets/ImagenesPreg/9.jpg'
     },
     {
-      question: '¿Cuándo se celebra la fiesta de San Ignacio?',
-      correctAnswer: 'La fiesta de San Ignacio es el 31 de julio',
-      image: 'assets/images/calendar.jpg'
+      question: '¿Qué amigos importantes conoció en París?',
+      correctAnswer: 'San Ignacio conoció a Francisco Javier y Pedro Fabro',
+      image: '/assets/ImagenesPreg/10.jpg'
     },
     {
-      question: '¿Qué experiencia cambió la vida de San Ignacio?',
-      correctAnswer: 'San Ignacio tuvo una conversión religiosa',
-      image: 'assets/images/conversion.jpg'
+      question: '¿Cómo se llama el grupo que fundó con sus amigos?',
+      correctAnswer: 'San Ignacio fundó la Compañía de Jesús',
+      image: '/assets/ImagenesPreg/11.jpg'
     },
     {
-      question: '¿Cuál era la frase habitual en las oraciones de San Ignacio?',
-      correctAnswer: 'San Ignacio rezaba diciendo todo para mayor gloria de Dios',
-      image: 'assets/images/prayer.jpg'
+      question: '¿Cuál era el objetivo de la Compañía de Jesús?',
+      correctAnswer: 'Su objetivo era acercar a las personas a Dios',
+      image: '/assets/ImagenesPreg/1.jpg'
     },
     {
-      question: '¿A quiénes educan los colegios jesuitas?',
-      correctAnswer: 'Los colegios jesuitas educan a muchos niños',
-      image: 'assets/images/school.jpg'
+      question: '¿Qué es ser un jesuita?',
+      correctAnswer: 'Un jesuita es parte del grupo que sigue a Jesús',
+      image: '/assets/ImagenesPreg/4.jpg'
     },
     {
-      question: '¿En qué parte del cuerpo fue herido San Ignacio?',
-      correctAnswer: 'San Ignacio fue herido en una pierna',
-      image: 'assets/images/leg-injury.jpg'
+      question: '¿Qué creó San Ignacio para ayudar a los niños?',
+      correctAnswer: 'San Ignacio creó escuelas y colegios',
+      image: '/assets/ImagenesPreg/5.jpg'
     },
     {
-      question: '¿En qué lugar especial vivió San Ignacio un tiempo?',
-      correctAnswer: 'San Ignacio vivió en una cueva en Manresa',
-      image: 'assets/images/cave.jpg'
+      question: '¿En qué ciudad murió San Ignacio?',
+      correctAnswer: 'San Ignacio murió en Roma Italia',
+      image: '/assets/ImagenesPreg/7.jpg'
     },
     {
-      question: '¿Qué organización religiosa aprobó el Papa?',
-      correctAnswer: 'El Papa aprobó la Compañía de Jesús',
-      image: 'assets/images/pope.jpg'
+      question: '¿En qué año murió San Ignacio?',
+      correctAnswer: 'San Ignacio murió en el año 1556',
+      image: '/assets/ImagenesPreg/9.jpg'
     },
     {
-      question: '¿Qué valoraba especialmente San Ignacio para la sociedad?',
-      correctAnswer: 'San Ignacio amaba la educación para todos',
-      image: 'assets/images/education.jpg'
+      question: '¿Cuándo fue declarado santo?',
+      correctAnswer: 'San Ignacio fue declarado santo en 1622',
+      image: '/assets/ImagenesPreg/11.jpg'
     },
     {
-      question: '¿Cuál era el lema principal de San Ignacio?',
-      correctAnswer: 'El lema de San Ignacio era en todo amar y servir',
-      image: 'assets/images/heart.jpg'
+      question: '¿Por qué recordamos a San Ignacio hoy?',
+      correctAnswer: 'Lo recordamos por su fe y amor a Dios',
+      image: '/assets/ImagenesPreg/4.jpg'
     },
     {
-      question: '¿A qué grupos de personas ayudaba San Ignacio?',
-      correctAnswer: 'San Ignacio ayudaba a los pobres y enfermos',
-      image: 'assets/images/charity.jpg'
+      question: '¿Cuál es el lema de los jesuitas?',
+      correctAnswer: 'El lema es Ad maiorem Dei gloriam',
+      image: '/assets/ImagenesPreg/6.jpg'
     },
     {
-      question: '¿Qué enseñanza espiritual promovía San Ignacio?',
-      correctAnswer: 'San Ignacio enseñaba a encontrar a Dios en todo',
-      image: 'assets/images/spirituality.jpg'
-    },
-    {
-      question: '¿A qué lugar sagrado viajó San Ignacio?',
-      correctAnswer: 'San Ignacio viajó a Tierra Santa',
-      image: 'assets/images/holy-land.jpg'
-    },
-    {
-      question: '¿Dónde falleció San Ignacio?',
-      correctAnswer: 'San Ignacio murió en Roma',
-      image: 'assets/images/rome.jpg'
+      question: '¿Qué día celebramos a San Ignacio?',
+      correctAnswer: 'San Ignacio se celebra el 31 de julio',
+      image: '/assets/ImagenesPreg/7.jpg'
     }
   ];
 
@@ -171,7 +182,17 @@ export class PrimariaComponent implements OnInit {
   private slotDragSource: number = -1;
 
   constructor(private renderer: Renderer2) {
-    addIcons({checkmarkCircleOutline, refreshOutline, trophy, arrowForward, heart, star });
+    addIcons({
+      checkmarkCircleOutline,
+      refreshOutline,
+      trophy,
+      arrowForward,
+      heart,
+      star,
+      'home-outline': homeOutline,
+      'refresh-outline': refreshCircle
+    });
+
     // Preload sounds
     this.dragSound = new Audio(this.dragSoundUrl);
     this.dropSound = new Audio(this.dropSoundUrl);
@@ -339,6 +360,7 @@ export class PrimariaComponent implements OnInit {
     let allCorrect = true;
     let correctCount = 0;
 
+    // Check how many words are in correct positions
     for (let i = 0; i < this.answerSlots.length; i++) {
       if (this.answerSlots[i] === correctAnswerWords[i]) {
         this.feedback[i] = 'correct';
@@ -349,20 +371,31 @@ export class PrimariaComponent implements OnInit {
       }
     }
 
+    // Calculate points based on correct answers (10 points max per question)
+    const earnedPoints = Math.max(1, Math.round((correctCount / correctAnswerWords.length) * 10));
+
     if (allCorrect) {
+      // Full 10 points for perfect answer
       this.score += 10;
       this.playSound('correct');
-      this.showFeedback('¡Excelente! ¡Lo lograste!', 'checkmark-circle', 'success', 3500);
+      this.showFeedback('¡Excelente! ¡Lo lograste! +10 puntos', 'checkmark-circle', 'success', 3500);
 
       setTimeout(() => {
         this.showSuccessModal = true;
       }, 2000);
     } else {
+      if (correctCount > 0) {
+        // Award partial points for partial correctness
+        this.score += earnedPoints;
+        this.showFeedback(`¡Tienes ${correctCount} palabras correctas! +${earnedPoints} puntos`,
+            'heart', 'warning', 3500);
+      }
+
       this.playSound('incorrect');
 
       if (this.attemptsLeft <= 0) {
         this.showFeedback('¡Se acabaron los intentos! La respuesta correcta era: ' +
-          currentQuestion.correctAnswer, 'close-circle', 'error', 5000);
+            currentQuestion.correctAnswer, 'close-circle', 'error', 5000);
 
         setTimeout(() => {
           this.showSuccessModal = true;
@@ -371,11 +404,10 @@ export class PrimariaComponent implements OnInit {
         const percentCorrect = (correctCount / correctAnswerWords.length) * 100;
 
         if (percentCorrect > 50) {
-          this.showFeedback('¡Casi lo tienes! Inténtalo de nuevo.', 'alert-circle', 'warning', 3500);
+          this.showFeedback(`¡Casi lo tienes! +${earnedPoints} puntos. Inténtalo de nuevo.`, 'alert-circle', 'warning', 3500);
         } else {
-          this.showFeedback('Sigue intentando. Te queda ' + this.attemptsLeft +
-            ' intento' + (this.attemptsLeft > 1 ? 's' : ''),
-            'refresh-circle', 'warning', 3500);
+          this.showFeedback(`+${earnedPoints} puntos. Te queda ${this.attemptsLeft} intento${this.attemptsLeft > 1 ? 's' : ''}`,
+              'refresh-circle', 'warning', 3500);
         }
       }
     }
@@ -399,9 +431,19 @@ export class PrimariaComponent implements OnInit {
       this.setupQuestion();
     } else {
       this.gameCompleted = true;
+      this.showFinalModal = true;
       this.showFeedback(`¡Felicidades! Has completado el juego con ${this.score} puntos.`,
-        'trophy', 'success');
+          'trophy', 'success');
     }
+  }
+
+  restartGame(): void {
+    this.showFinalModal = false;
+    this.gameCompleted = false;
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.shuffleQuestions();
+    this.setupQuestion();
   }
 
   resetQuestion(): void {
