@@ -12,15 +12,15 @@
   background-position: center;
   transition: background-image 0.5s ease;
   font-family: 'Fredoka One', cursive;
-  position: relative; // Para posicionar el contenedor de puntos
+  position: relative;
 }
 
 
 .intentos-container {
   position: absolute;
   top: 20px;
-  left: 20px; /* Posición en la parte superior izquierda */
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 1.5em;
@@ -31,8 +31,8 @@
 .puntos-container {
   position: absolute;
   top: 20px;
-  right: 20px; /* Ajusta este valor según sea necesario */
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 1.5em;
@@ -43,7 +43,7 @@
 .pregunta {
   text-align: center;
   margin-top: 20px;
-  background-color: rgba(255, 255, 255, 0.8); // Fondo semi-transparente
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,7 +51,7 @@
 
 h1 {
   color: #333;
-  font-size: 2.5em; // Tamaño de fuente más grande
+  font-size: 2.5em;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -111,13 +111,13 @@ h1 {
 
 .hueco {
   padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 0.9); // Fondo semi-transparente
+  background-color: rgba(255, 255, 255, 0.9);
   border: 2px dashed #ccc;
   border-radius: 10px;
   min-width: 60px;
   text-align: center;
   font-size: 1.5em;
-  color: #333; // Color de texto más oscuro
+  color: #333;
   transition: background-color 0.3s ease;
 }
 
@@ -189,17 +189,17 @@ h1 {
 
 .nombre-grupo {
   text-align: center;
-  margin-top: 20px; // Margen superior
-  color: #fff; // Texto blanco
-  font-family: 'Fredoka One', cursive; // Fuente infantil
-  font-size: 2.5em; // Tamaño del texto
+  margin-top: 20px;
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.5em;
   text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    3px 3px 0 #000; // Borde negro simulando con sombra
-  letter-spacing: 2px; // Espaciado entre letras
-  margin-bottom: 10px; // Margen inferior
+    3px 3px 0 #000;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
 }
 
 
@@ -207,8 +207,8 @@ h1 {
 .preguntas-restantes-container {
   position: absolute;
   top: 20px;
-  right: 150px; /* Ajusta este valor según sea necesario */
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  right: 180px;
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 1.5em;

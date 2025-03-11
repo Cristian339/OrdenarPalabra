@@ -171,7 +171,7 @@ export class InfantilComponent implements OnInit {
   ngOnInit() {
     this.inicializarHuecos();
     this.route.queryParams.subscribe(params => {
-      this.groupName = params['groupName'] || ''; // <-- Asigna el valor de groupName
+      this.groupName = params['groupName'] || '';
     });
 
     this.inicializarHuecos();

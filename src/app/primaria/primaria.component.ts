@@ -3,6 +3,7 @@ import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star, homeOutline, refreshCircle } from "ionicons/icons";
 import { addIcons } from "ionicons";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-primaria',
@@ -181,7 +182,7 @@ export class PrimariaComponent implements OnInit {
   private touchStartWord: string = '';
   private slotDragSource: number = -1;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,private route: ActivatedRoute) {
     addIcons({
       checkmarkCircleOutline,
       refreshOutline,
@@ -199,6 +200,10 @@ export class PrimariaComponent implements OnInit {
     this.correctSound = new Audio(this.correctSoundUrl);
     this.incorrectSound = new Audio(this.incorrectSoundUrl);
     this.checkSound = new Audio(this.checkSoundUrl);
+
+
+
+
   }
 
   ngOnInit(): void {
@@ -206,6 +211,9 @@ export class PrimariaComponent implements OnInit {
     this.totalQuestions = this.questions.length;
     this.currentBackground = this.getRandomBackground();
     this.setupQuestion();
+    this.route.queryParams.subscribe(params => {
+      this.groupName = params['groupName'] || '';
+    });
   }
 
   shuffleQuestions(): void {
@@ -360,7 +368,6 @@ export class PrimariaComponent implements OnInit {
     let allCorrect = true;
     let correctCount = 0;
 
-    // Check how many words are in correct positions
     for (let i = 0; i < this.answerSlots.length; i++) {
       if (this.answerSlots[i] === correctAnswerWords[i]) {
         this.feedback[i] = 'correct';
@@ -375,7 +382,6 @@ export class PrimariaComponent implements OnInit {
     const earnedPoints = Math.max(1, Math.round((correctCount / correctAnswerWords.length) * 10));
 
     if (allCorrect) {
-      // Full 10 points for perfect answer
       this.score += 10;
       this.playSound('correct');
       this.showFeedback('¡Excelente! ¡Lo lograste! +10 puntos', 'checkmark-circle', 'success', 3500);
