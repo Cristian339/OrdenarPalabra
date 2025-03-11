@@ -1,15 +1,61 @@
-<ion-content class="home-container">
-  <div class="background">
-    <div class="card">
-      <h2 class="title">Nombre de Grupo</h2>
-      <div class="input-container">
+<div class="game-container">
+  <!-- Animated elements -->
+  <div class="floating-elements">
+    <div class="floating-element balloon1"></div>
+    <div class="floating-element balloon2"></div>
+    <div class="floating-element cloud1"></div>
+    <div class="floating-element cloud2"></div>
+    <div class="floating-element star1"></div>
+    <div class="floating-element star2"></div>
+  </div>
+
+  <div class="welcome-card">
+    <h1 class="welcome-title">¡Bienvenidos!</h1>
+
+    <div class="name-input-container">
+      <h2 class="input-label">Nombre del Grupo</h2>
+      <div class="input-wrapper">
         <ion-icon name="pencil" class="input-icon"></ion-icon>
-        <ion-input [(ngModel)]="groupName" class="input-group" placeholder="Escribe aquí..."></ion-input>
-      </div>
-      <div class="button-container">
-        <ion-button (click)="goToPage('infantil')" class="custom-button">Infantil</ion-button>
-        <ion-button (click)="goToPage('primaria')" class="custom-button">Primaria</ion-button>
+        <ion-input [(ngModel)]="groupName"
+                   class="group-input"
+                   placeholder="Escribe aquí..."
+                   (ionInput)="playTypingSound()"></ion-input>
       </div>
     </div>
+
+    <div class="buttons-container">
+      <ion-button class="game-button infantil-button"
+                  (click)="playClickSound(); goToPage('infantil')"
+                  [disabled]="!groupName.trim()">
+        <ion-icon name="happy-outline" slot="start"></ion-icon>
+        Infantil
+      </ion-button>
+
+      <ion-button class="game-button primaria-button"
+                  (click)="playClickSound(); goToPage('primaria')"
+                  [disabled]="!groupName.trim()">
+        <ion-icon name="school-outline" slot="start"></ion-icon>
+        Primaria
+      </ion-button>
+    </div>
+
+    <div class="info-button" (click)="showGameInfo()">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </div>
   </div>
-</ion-content>
+
+  <!-- Info modal -->
+  <div class="modal-overlay" *ngIf="showInfoModal">
+    <div class="info-modal">
+      <ion-icon name="close-circle" class="close-icon" (click)="hideGameInfo()"></ion-icon>
+      <h2>¡Ordena las Palabras!</h2>
+      <p>Este juego te ayudará a mejorar tus habilidades con el orden de palabras en oraciones.</p>
+      <p>Para jugar:</p>
+      <ol>
+        <li>Arrastra las palabras a sus posiciones correctas</li>
+        <li>Comprueba tu respuesta cuando estés listo</li>
+        <li>¡Consigue la máxima puntuación ordenando correctamente todas las oraciones!</li>
+      </ol>
+    </div>
+  </div>
+</div>

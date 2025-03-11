@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
-import {IonicModule} from "@ionic/angular";
-import {arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star} from "ionicons/icons";
-import {addIcons} from "ionicons";
+import { IonicModule } from "@ionic/angular";
+import { arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star } from "ionicons/icons";
+import { addIcons } from "ionicons";
 
 @Component({
   selector: 'app-primaria',
@@ -35,16 +35,16 @@ export class PrimariaComponent implements OnInit {
   currentMaxScore: number = 0;
   currentQuestionNumber: number = 1;
   totalQuestions: number = 0;
-  showFailureModal: boolean = false;
+  showInfoModal: boolean = true;
+  hasShownInfoModal: boolean = false;
+  infoImage: string = 'assets/Menu/Comentario.png';
 
-  // Background images - using direct URLs like in the Infantil component
   backgroundImages: string[] = [
     'https://img.freepik.com/vector-gratis/fondo-dibujado-mano-acuarela-pastel_23-2148902621.jpg',
     'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889930.jpg',
     'https://img.freepik.com/vector-gratis/fondo-acuarela-abstracto-colorido_23-2148889935.jpg',
     'https://img.freepik.com/free-vector/hand-drawn-cartoon-background_52683-30786.jpg',
     'https://img.freepik.com/free-vector/rainbow-sky-background_23-2148995842.jpg',
-    'https://img.freepik.com/free-vector/children-template-with-balloons-clouds_1308-32341.jpg'
   ];
   currentBackground: string = '';
 
@@ -152,14 +152,13 @@ export class PrimariaComponent implements OnInit {
   ];
 
   // Audio files
-
   dragSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-32.mp3';
   dropSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-31.mp3';
   correctSoundUrl: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
   incorrectSoundUrl: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
   checkSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-33a.mp3';
 
-  // Audio objects like in Infantil component
+  // Audio objects
   dragSound: HTMLAudioElement;
   dropSound: HTMLAudioElement;
   correctSound: HTMLAudioElement;
@@ -195,13 +194,11 @@ export class PrimariaComponent implements OnInit {
     }
   }
 
-  // Get random background from the array
   getRandomBackground(): string {
     const index = Math.floor(Math.random() * this.backgroundImages.length);
     return this.backgroundImages[index];
   }
 
-  // Set up current question
   setupQuestion(): void {
     const currentQuestion = this.questions[this.currentQuestionIndex];
     const correctAnswerWords = currentQuestion.correctAnswer.split(' ');
@@ -219,7 +216,6 @@ export class PrimariaComponent implements OnInit {
     this.currentBackground = this.getRandomBackground();
   }
 
-  // Play sound effects
   playSound(type: 'drag' | 'drop' | 'correct' | 'incorrect' | 'check'): void {
     let audio: HTMLAudioElement;
 
@@ -247,12 +243,10 @@ export class PrimariaComponent implements OnInit {
     audio.play().catch(error => console.error('Error playing sound:', error));
   }
 
-  // Highlight drop zone
   setDraggedOver(index: number): void {
     this.isDraggedOver = index;
   }
 
-  // Start dragging from word pool or answer slot
   drag(event: DragEvent, word: string, fromSlotIndex: number = -1): void {
     if (event.dataTransfer) {
       const dragData = {word: word, fromSlot: fromSlotIndex};
@@ -262,12 +256,10 @@ export class PrimariaComponent implements OnInit {
     }
   }
 
-  // Allow drop
   allowDrop(event: DragEvent): void {
     event.preventDefault();
   }
 
-  // Handle drop with rearrangement
   drop(event: DragEvent, index: number): void {
     event.preventDefault();
 
@@ -317,7 +309,6 @@ export class PrimariaComponent implements OnInit {
     this.setDraggedOver(-1);
   }
 
-  // Return word to pool
   dropToPool(event: DragEvent): void {
     event.preventDefault();
 
@@ -375,7 +366,7 @@ export class PrimariaComponent implements OnInit {
 
         setTimeout(() => {
           this.showSuccessModal = true;
-        }, 5000); // Increased to 5 seconds
+        }, 5000);
       } else {
         const percentCorrect = (correctCount / correctAnswerWords.length) * 100;
 
@@ -400,8 +391,6 @@ export class PrimariaComponent implements OnInit {
     }, duration);
   }
 
-
-  // Move to next question
   nextQuestion(): void {
     this.showSuccessModal = false;
 
@@ -415,12 +404,10 @@ export class PrimariaComponent implements OnInit {
     }
   }
 
-  // Reset current question
   resetQuestion(): void {
     this.setupQuestion();
   }
 
-  // Generate stars based on score
   getStars(): number[] {
     const starCount = Math.min(5, Math.floor(this.score / 20));
     return Array(starCount).fill(0);
@@ -452,7 +439,6 @@ export class PrimariaComponent implements OnInit {
     const element = this.touchStartElement as HTMLElement;
     const touch = event.changedTouches[0];
 
-
     const dropZones = document.querySelectorAll('.drop-zone');
     let targetIndex = -1;
 
@@ -468,7 +454,6 @@ export class PrimariaComponent implements OnInit {
       }
     });
 
-
     if (targetIndex !== -1) {
       const wordIndex = this.words.indexOf(this.touchStartWord);
       if (wordIndex !== -1) {
@@ -478,7 +463,6 @@ export class PrimariaComponent implements OnInit {
       }
     }
 
-
     this.renderer.removeStyle(element, 'position');
     this.renderer.removeStyle(element, 'left');
     this.renderer.removeStyle(element, 'top');
@@ -486,5 +470,11 @@ export class PrimariaComponent implements OnInit {
 
     this.touchStartElement = null;
     this.touchStartWord = '';
+  }
+
+  closeInfoModal(): void {
+    this.playSound('check'); // Fixed: Using existing playSound method instead of undefined playButtonSound
+    this.showInfoModal = false;
+    this.hasShownInfoModal = true;
   }
 }
