@@ -1,9 +1,18 @@
 <div class="pagina-completa" [ngStyle]="{'background-image': 'url(' + fondo + ')'}">
   <!-- Header con el nombre del grupo -->
   <h1 class="nombre-grupo">{{ groupName }}</h1>
-  <!-- Puntos -->
+
+  <!-- Intentos restantes -->
+  <div class="intentos-container">
+    Intentos restantes: {{ 2 - intentosFallidos }}
+  </div>
+
+  <!-- Puntos y preguntas restantes -->
   <div class="puntos-container">
     Puntos: {{ puntos }}
+  </div>
+  <div class="preguntas-restantes-container">
+    Preguntas restantes: {{ preguntas.length - palabraActualIndex }}
   </div>
 
   <!-- Pregunta -->

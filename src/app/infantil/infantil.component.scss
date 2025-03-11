@@ -15,11 +15,24 @@
   position: relative; // Para posicionar el contenedor de puntos
 }
 
+
+.intentos-container {
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Posición en la parte superior izquierda */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .puntos-container {
   position: absolute;
   top: 20px;
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.8); // Fondo semi-transparente
+  right: 20px; /* Ajusta este valor según sea necesario */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 1.5em;
@@ -187,4 +200,18 @@ h1 {
     3px 3px 0 #000; // Borde negro simulando con sombra
   letter-spacing: 2px; // Espaciado entre letras
   margin-bottom: 10px; // Margen inferior
+}
+
+
+
+.preguntas-restantes-container {
+  position: absolute;
+  top: 20px;
+  right: 150px; /* Ajusta este valor según sea necesario */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
