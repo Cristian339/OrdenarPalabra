@@ -123,26 +123,26 @@
 
 
     <div class="modal-overlay" *ngIf="showFinalModal">
-        <div class="final-modal">
-            <ion-icon name="trophy" class="success-icon"></ion-icon>
-            <h2>¡Juego Completado!</h2>
-            <p>Has completado todas las preguntas sobre San Ignacio de Loyola</p>
-            <div class="score-summary">
-                <p>Preguntas respondidas: <span class="highlight-score">{{ totalQuestions }}</span> de <span class="highlight-score">{{ totalQuestions }}</span></p>
-                <p>Puntuación final: <span class="highlight-score">{{ score }}</span></p>
-                <p>Puntuación máxima posible: <span class="highlight-score">{{ totalQuestions * 10 }}</span></p>
-            </div>
-            <div class="stars">
-                <ion-icon name="star" class="star-icon" *ngFor="let star of getStars()"></ion-icon>
-            </div>
-            <ion-button class="restart-button" (click)="restartGame()">
-                <ion-icon name="refresh-outline" slot="start"></ion-icon>
-                Jugar de nuevo
-            </ion-button>
-            <ion-button class="home-button" href="/inicio">
-                <ion-icon name="home-outline" slot="start"></ion-icon>
-                Volver al inicio
-            </ion-button>
+      <div class="final-modal">
+        <ion-icon name="trophy" class="success-icon"></ion-icon>
+        <h2>¡Juego Completado!</h2>
+        <p>Has completado todas las preguntas sobre San Ignacio de Loyola</p>
+        <div class="score-summary">
+          <p>Preguntas respondidas correctamente: <span class="highlight-score">{{ perfectAnswerCount }}</span> de <span class="highlight-score">{{ totalQuestions }}</span></p>
+          <p>Puntuación final: <span class="highlight-score">{{ score }}</span></p>
+          <p>Puntuación máxima posible: <span class="highlight-score">{{ totalQuestions * 10 }}</span></p>
         </div>
+        <div class="stars">
+          <ion-icon name="star" class="star-icon" *ngFor="let star of getStars()"></ion-icon>
+        </div>
+        <ion-button class="restart-button" (click)="restartGame()">
+          <ion-icon name="refresh-outline" slot="start"></ion-icon>
+          Jugar de nuevo
+        </ion-button>
+        <ion-button class="home-button" href="/inicio">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          Volver al inicio
+        </ion-button>
+      </div>
     </div>
 </div>

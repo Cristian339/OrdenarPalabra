@@ -19,7 +19,8 @@ import {ActivatedRoute} from "@angular/router";
   ]
 })
 export class PrimariaComponent implements OnInit {
-  // Game properties
+
+
   groupName: string = '¡Ordena las Palabras!';
   currentQuestionIndex: number = 0;
   score: number = 0;
@@ -40,6 +41,9 @@ export class PrimariaComponent implements OnInit {
   hasShownInfoModal: boolean = false;
   infoImage: string = '/assets/Menu/Comentario.png';
   showFinalModal: boolean = false;
+  pointsEarnedForCurrentQuestion: number = 0;
+  perfectAnswerCount: number = 0;
+
 
   backgroundImages: string[] = [
     'https://st4.depositphotos.com/1763191/40189/v/450/depositphotos_401892196-stock-illustration-jesus-children-park-illustration.jpg',
@@ -66,23 +70,19 @@ export class PrimariaComponent implements OnInit {
   ];
   currentBackground: string = '';
 
-  questions: any[] = [
-    {
-      question: '¿En qué lugar nació San Ignacio de Loyola?',
-      correctAnswer: 'San Ignacio nació en Azpeitia en España',
-      image: '/assets/ImagenesPreg/1.jpg'
-    },
-    {
-      question: '¿En qué año nació San Ignacio?',
-      correctAnswer: 'San Ignacio nació en el año 1491',
-      image: '/assets/ImagenesPreg/2.jpg'
-    },
-    {
-      question: '¿Cómo se llamaba San Ignacio antes de ser santo?',
-      correctAnswer: 'Se llamaba Íñigo López de Loyola',
-      image: '/assets/ImagenesPreg/3.jpg'
-    },
-    {
+  questions: any[] = [{
+    question: '¿En qué lugar nació San Ignacio de Loyola?',
+    correctAnswer: 'San Ignacio nació en Azpeitia en España',
+    image: '/assets/ImagenesPreg/1.jpg'
+  }, {
+    question: '¿En qué año nació San Ignacio?',
+    correctAnswer: 'San Ignacio nació en el año 1491',
+    image: '/assets/ImagenesPreg/2.jpg'
+  }, {
+    question: '¿Cómo se llamaba San Ignacio antes de ser santo?',
+    correctAnswer: 'Se llamaba Íñigo López de Loyola',
+    image: '/assets/ImagenesPreg/3.jpg'
+  },    {
       question: '¿Qué soñaba ser San Ignacio cuando era joven?',
       correctAnswer: 'San Ignacio soñaba ser un soldado valiente',
       image: '/assets/ImagenesPreg/4.jpg'
@@ -146,38 +146,40 @@ export class PrimariaComponent implements OnInit {
     {
       question: '¿En qué año murió San Ignacio?',
       correctAnswer: 'San Ignacio murió en el año 1556',
-      image: '/assets/ImagenesPreg/9.jpg'
+      image: '/assets/ImagenesPreg/16.jpg'
     },
     {
       question: '¿Cuándo fue declarado santo?',
       correctAnswer: 'San Ignacio fue declarado santo en 1622',
-      image: '/assets/ImagenesPreg/11.jpg'
+      image: '/assets/ImagenesPreg/17.jpg'
     },
     {
       question: '¿Por qué recordamos a San Ignacio hoy?',
       correctAnswer: 'Lo recordamos por su fe y amor a Dios',
-      image: '/assets/ImagenesPreg/4.jpg'
+      image: '/assets/ImagenesPreg/18.jpg'
     },
     {
       question: '¿Cuál es el lema de los jesuitas?',
       correctAnswer: 'El lema es Ad maiorem Dei gloriam',
-      image: '/assets/ImagenesPreg/6.jpg'
+      image: '/assets/ImagenesPreg/19.jpg'
     },
     {
       question: '¿Qué día celebramos a San Ignacio?',
       correctAnswer: 'San Ignacio se celebra el 31 de julio',
-      image: '/assets/ImagenesPreg/7.jpg'
+      image: '/assets/ImagenesPreg/20.jpg'
     }
   ];
 
-  // Audio files
+
+
   dragSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-32.mp3';
   dropSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-31.mp3';
   correctSoundUrl: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
   incorrectSoundUrl: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
   checkSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-33a.mp3';
 
-  // Audio objects
+
+
   dragSound: HTMLAudioElement;
   dropSound: HTMLAudioElement;
   correctSound: HTMLAudioElement;
@@ -185,6 +187,9 @@ export class PrimariaComponent implements OnInit {
   checkSound: HTMLAudioElement;
   backgroundMusic: HTMLAudioElement;
   // Touch handling
+
+
+
   private touchStartElement: any = null;
   private touchStartWord: string = '';
   private slotDragSource: number = -1;
@@ -201,7 +206,8 @@ export class PrimariaComponent implements OnInit {
       'refresh-outline': refreshCircle
     });
 
-    // Preload sounds
+
+
     this.dragSound = new Audio(this.dragSoundUrl);
     this.dropSound = new Audio(this.dropSoundUrl);
     this.correctSound = new Audio(this.correctSoundUrl);
@@ -251,11 +257,10 @@ export class PrimariaComponent implements OnInit {
     this.feedback = Array(correctAnswerWords.length).fill('');
     this.attemptsLeft = 2;
     this.currentMaxScore = this.score + 10;
+    this.pointsEarnedForCurrentQuestion = 0;
 
-    // Update current question number
     this.currentQuestionNumber = this.currentQuestionIndex + 1;
 
-    // Change background
     this.currentBackground = this.getRandomBackground();
   }
 
@@ -313,29 +318,36 @@ export class PrimariaComponent implements OnInit {
       const word = dragData.word;
       const fromSlot = dragData.fromSlot;
 
-      // Existing word in target slot
+
+
       const existingWord = this.answerSlots[index];
 
       if (fromSlot >= 0) {
-        // Moving from one slot to another
+
+
         this.answerSlots[fromSlot] = '';
         this.feedback[fromSlot] = '';
 
         if (existingWord) {
-          // Swap words between slots
+
+
           this.answerSlots[fromSlot] = existingWord;
         }
 
-        // Place dragged word in target
+
+
         this.answerSlots[index] = word;
       } else {
-        // From word pool to slot
+
+
         if (existingWord) {
-          // Return existing word to pool
+
+
           this.words.push(existingWord);
         }
 
-        // Place new word in slot
+
+
         this.answerSlots[index] = word;
         const wordIndex = this.words.indexOf(word);
         if (wordIndex !== -1) {
@@ -392,30 +404,45 @@ export class PrimariaComponent implements OnInit {
       }
     }
 
-    // Calculate points based on correct answers (10 points max per question)
-    const earnedPoints = Math.max(1, Math.round((correctCount / correctAnswerWords.length) * 10));
+
+    const earnedPoints = correctCount === 0 ? 0 : Math.max(1, Math.round((correctCount / correctAnswerWords.length) * 10));
+    const remainingPoints = 10 - this.pointsEarnedForCurrentQuestion;
+    const pointsToAdd = Math.min(earnedPoints, remainingPoints);
 
     if (allCorrect) {
-      this.score += 10;
+
+      this.score += remainingPoints;
+      this.pointsEarnedForCurrentQuestion = 10; // Max points reached
+
+
+      if (this.pointsEarnedForCurrentQuestion === 10) {
+        this.perfectAnswerCount++;
+      }
+
       this.playSound('correct');
-      this.showFeedback('¡Excelente! ¡Lo lograste! +10 puntos', 'checkmark-circle', 'success', 3500);
+      this.showFeedback(`¡Excelente! ¡Lo lograste! +${remainingPoints} puntos`, 'checkmark-circle', 'success', 3500);
 
       setTimeout(() => {
         this.showSuccessModal = true;
       }, 2000);
     } else {
-      if (correctCount > 0) {
-        // Award partial points for partial correctness
-        this.score += earnedPoints;
-        this.showFeedback(`¡Tienes ${correctCount} palabras correctas! +${earnedPoints} puntos`,
-            'heart', 'warning', 3500);
+      if (correctCount > 0 && pointsToAdd > 0) {
+        this.score += pointsToAdd;
+        this.pointsEarnedForCurrentQuestion += pointsToAdd;
+
+        this.showFeedback(`¡Tienes ${correctCount} palabras correctas! +${pointsToAdd} puntos`,
+          'alert-circle', 'warning', 3500);
+      } else if (correctCount === 0) {
+        // Special case for zero correct answers
+        this.showFeedback(`No has acertado ninguna palabra. +0 puntos`,
+          'alert-circle', 'warning', 3500);
       }
 
       this.playSound('incorrect');
 
       if (this.attemptsLeft <= 0) {
         this.showFeedback('¡Se acabaron los intentos! La respuesta correcta era: ' +
-            currentQuestion.correctAnswer, 'close-circle', 'error', 5000);
+          currentQuestion.correctAnswer, 'close-circle', 'error', 5000);
 
         setTimeout(() => {
           this.showSuccessModal = true;
@@ -424,10 +451,13 @@ export class PrimariaComponent implements OnInit {
         const percentCorrect = (correctCount / correctAnswerWords.length) * 100;
 
         if (percentCorrect > 50) {
-          this.showFeedback(`¡Casi lo tienes! +${earnedPoints} puntos. Inténtalo de nuevo.`, 'alert-circle', 'warning', 3500);
+          this.showFeedback(`¡Casi lo tienes! Inténtalo de nuevo. Has ganado ${pointsToAdd} puntos.`, 'alert-circle', 'warning', 3500);
+        } else if (correctCount > 0) {
+          this.showFeedback(`Sigue intentando. Te queda ${this.attemptsLeft} intento. Has ganado ${pointsToAdd} puntos.`,
+            'refresh-circle', 'warning', 3500);
         } else {
-          this.showFeedback(`+${earnedPoints} puntos. Te queda ${this.attemptsLeft} intento${this.attemptsLeft > 1 ? 's' : ''}`,
-              'refresh-circle', 'warning', 3500);
+          this.showFeedback(`Sigue intentando. Te queda ${this.attemptsLeft} intento. No has ganado puntos.`,
+            'refresh-circle', 'warning', 3500);
         }
       }
     }
@@ -451,9 +481,14 @@ export class PrimariaComponent implements OnInit {
       this.setupQuestion();
     } else {
       this.gameCompleted = true;
-      this.showFinalModal = true;
+
       this.showFeedback(`¡Felicidades! Has completado el juego con ${this.score} puntos.`,
-          'trophy', 'success');
+        'trophy', 'success', 4000);
+
+      // Show final modal after a delay
+      setTimeout(() => {
+        this.showFinalModal = true;
+      }, 4500);
     }
   }
 
@@ -462,6 +497,7 @@ export class PrimariaComponent implements OnInit {
     this.gameCompleted = false;
     this.currentQuestionIndex = 0;
     this.score = 0;
+    this.perfectAnswerCount = 0;
     this.shuffleQuestions();
     this.setupQuestion();
   }
@@ -477,9 +513,11 @@ export class PrimariaComponent implements OnInit {
 
   private touchOffset = {x: 0, y: 0};
 
-  // Update the startTouch method to better handle touch positioning
+
+
   startTouch(event: TouchEvent, word: string): void {
-    // Prevent default to avoid scrolling while dragging
+
+
     event.preventDefault();
 
     this.touchStartElement = event.target;
@@ -489,13 +527,15 @@ export class PrimariaComponent implements OnInit {
     const element = event.target as HTMLElement;
     const rect = element.getBoundingClientRect();
 
-    // Calculate touch offset from the element's center for more natural feeling
+
+
     this.touchOffset = {
       x: touch.clientX - (rect.left + rect.width / 2),
       y: touch.clientY - (rect.top + rect.height / 2)
     };
 
-    // Clone the element for visual feedback during drag
+
+
     const clone = element.cloneNode(true) as HTMLElement;
     this.renderer.setStyle(clone, 'position', 'fixed');
     this.renderer.setStyle(clone, 'left', `${touch.clientX - this.touchOffset.x}px`);
@@ -505,7 +545,8 @@ export class PrimariaComponent implements OnInit {
     this.renderer.setStyle(clone, 'pointer-events', 'none');
     this.renderer.addClass(clone, 'touch-dragging');
 
-    // Add unique identifier to differentiate duplicates
+
+
     this.renderer.setAttribute(clone, 'data-drag-id', Date.now().toString());
 
     document.body.appendChild(clone);
@@ -514,7 +555,8 @@ export class PrimariaComponent implements OnInit {
     this.playSound('drag');
   }
 
-// Update the moveTouch method to always follow the finger precisely
+
+
   moveTouch(event: TouchEvent): void {
     if (!this.touchStartElement || this.touchStartWord === '') return;
 
@@ -523,12 +565,14 @@ export class PrimariaComponent implements OnInit {
     const touch = event.touches[0];
     const element = this.touchStartElement as HTMLElement;
 
-    // Position element directly under the finger with the calculated offset
+
+
     this.renderer.setStyle(element, 'left', `${touch.clientX - this.touchOffset.x}px`);
     this.renderer.setStyle(element, 'top', `${touch.clientY - this.touchOffset.y}px`);
   }
 
-// Update endTouch to clean up properly
+
+
   endTouch(event: TouchEvent, slotIndex?: number): void {
     if (!this.touchStartElement || this.touchStartWord === '') return;
 
@@ -537,18 +581,21 @@ export class PrimariaComponent implements OnInit {
     const element = this.touchStartElement as HTMLElement;
     const touch = event.changedTouches[0];
 
-    // Remove the clone element from the document
+
+
     if (element.parentNode === document.body) {
       document.body.removeChild(element);
     }
 
-    // Get element at the touch point
+
+
     const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
 
     if (slotIndex !== undefined) {
       this.handleDrop(slotIndex);
     } else if (elementAtPoint) {
-      // Check for answer slot
+
+
       const slotElement = elementAtPoint.closest('.answer-slot');
       if (slotElement) {
         const index = slotElement.getAttribute('data-index');
@@ -564,11 +611,13 @@ export class PrimariaComponent implements OnInit {
     this.touchStartWord = '';
   }
 
-// Helper method to handle dropping a word to a slot
+
+
   private handleDrop(slotIndex: number): void {
     const existingWord = this.answerSlots[slotIndex];
 
-    // Check if word is already in a slot
+
+
     let fromSlot = -1;
     for (let i = 0; i < this.answerSlots.length; i++) {
       if (this.answerSlots[i] === this.touchStartWord) {
@@ -578,7 +627,8 @@ export class PrimariaComponent implements OnInit {
     }
 
     if (fromSlot >= 0) {
-      // Moving from one slot to another
+
+
       this.answerSlots[fromSlot] = '';
       this.feedback[fromSlot] = '';
 
@@ -588,7 +638,8 @@ export class PrimariaComponent implements OnInit {
 
       this.answerSlots[slotIndex] = this.touchStartWord;
     } else {
-      // From word pool to slot
+
+
       const wordIndex = this.words.indexOf(this.touchStartWord);
 
       if (wordIndex !== -1) {
@@ -604,9 +655,11 @@ export class PrimariaComponent implements OnInit {
     this.playSound('drop');
   }
 
-// Return word to the word bank
+
+
   private returnWordToBank(): void {
-    // Find which slot had the word
+
+
     let fromSlot = -1;
     for (let i = 0; i < this.answerSlots.length; i++) {
       if (this.answerSlots[i] === this.touchStartWord) {
