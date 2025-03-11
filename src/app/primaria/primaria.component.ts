@@ -3,6 +3,7 @@ import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star } from "ionicons/icons";
 import { addIcons } from "ionicons";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-primaria',
@@ -170,7 +171,7 @@ export class PrimariaComponent implements OnInit {
   private touchStartWord: string = '';
   private slotDragSource: number = -1;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,private route: ActivatedRoute) {
     addIcons({checkmarkCircleOutline, refreshOutline, trophy, arrowForward, heart, star });
     // Preload sounds
     this.dragSound = new Audio(this.dragSoundUrl);
@@ -178,6 +179,10 @@ export class PrimariaComponent implements OnInit {
     this.correctSound = new Audio(this.correctSoundUrl);
     this.incorrectSound = new Audio(this.incorrectSoundUrl);
     this.checkSound = new Audio(this.checkSoundUrl);
+
+
+
+
   }
 
   ngOnInit(): void {
@@ -185,6 +190,9 @@ export class PrimariaComponent implements OnInit {
     this.totalQuestions = this.questions.length;
     this.currentBackground = this.getRandomBackground();
     this.setupQuestion();
+    this.route.queryParams.subscribe(params => {
+      this.groupName = params['groupName'] || '';
+    });
   }
 
   shuffleQuestions(): void {
