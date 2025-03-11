@@ -119,22 +119,23 @@ export class PrimariaComponent implements OnInit {
     {
       question: '¿Cuál era el objetivo de la Compañía de Jesús?',
       correctAnswer: 'Su objetivo era acercar a las personas a Dios',
-      image: '/assets/ImagenesPreg/1.jpg'
+      image: '/assets/ImagenesPreg/12.jpg'
+      /*sdfsdfds*/
     },
     {
       question: '¿Qué es ser un jesuita?',
       correctAnswer: 'Un jesuita es parte del grupo que sigue a Jesús',
-      image: '/assets/ImagenesPreg/4.jpg'
+      image: '/assets/ImagenesPreg/13.jpg'
     },
     {
       question: '¿Qué creó San Ignacio para ayudar a los niños?',
       correctAnswer: 'San Ignacio creó escuelas y colegios',
-      image: '/assets/ImagenesPreg/5.jpg'
+      image: '/assets/ImagenesPreg/14.jpg'
     },
     {
       question: '¿En qué ciudad murió San Ignacio?',
       correctAnswer: 'San Ignacio murió en Roma Italia',
-      image: '/assets/ImagenesPreg/7.jpg'
+      image: '/assets/ImagenesPreg/15.jpg'
     },
     {
       question: '¿En qué año murió San Ignacio?',
@@ -461,68 +462,159 @@ export class PrimariaComponent implements OnInit {
     return Array(starCount).fill(0);
   }
 
+  private touchOffset = {x: 0, y: 0};
+
+  // Update the startTouch method to better handle touch positioning
   startTouch(event: TouchEvent, word: string): void {
+    // Prevent default to avoid scrolling while dragging
+    event.preventDefault();
+
     this.touchStartElement = event.target;
     this.touchStartWord = word;
+
+    const touch = event.touches[0];
+    const element = event.target as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    // Calculate touch offset from the element's center for more natural feeling
+    this.touchOffset = {
+      x: touch.clientX - (rect.left + rect.width / 2),
+      y: touch.clientY - (rect.top + rect.height / 2)
+    };
+
+    // Clone the element for visual feedback during drag
+    const clone = element.cloneNode(true) as HTMLElement;
+    this.renderer.setStyle(clone, 'position', 'fixed');
+    this.renderer.setStyle(clone, 'left', `${touch.clientX - this.touchOffset.x}px`);
+    this.renderer.setStyle(clone, 'top', `${touch.clientY - this.touchOffset.y}px`);
+    this.renderer.setStyle(clone, 'zIndex', '1000');
+    this.renderer.setStyle(clone, 'opacity', '0.8');
+    this.renderer.setStyle(clone, 'pointer-events', 'none');
+    this.renderer.addClass(clone, 'touch-dragging');
+
+    // Add unique identifier to differentiate duplicates
+    this.renderer.setAttribute(clone, 'data-drag-id', Date.now().toString());
+
+    document.body.appendChild(clone);
+    this.touchStartElement = clone;
+
     this.playSound('drag');
   }
 
+// Update the moveTouch method to always follow the finger precisely
   moveTouch(event: TouchEvent): void {
     if (!this.touchStartElement || this.touchStartWord === '') return;
 
     event.preventDefault();
 
     const touch = event.touches[0];
-    const element = this.touchStartElement;
+    const element = this.touchStartElement as HTMLElement;
 
-    this.renderer.setStyle(element, 'position', 'fixed');
-    this.renderer.setStyle(element, 'left', `${touch.clientX - 50}px`);
-    this.renderer.setStyle(element, 'top', `${touch.clientY - 25}px`);
-    this.renderer.setStyle(element, 'zIndex', '1000');
+    // Position element directly under the finger with the calculated offset
+    this.renderer.setStyle(element, 'left', `${touch.clientX - this.touchOffset.x}px`);
+    this.renderer.setStyle(element, 'top', `${touch.clientY - this.touchOffset.y}px`);
   }
 
-  endTouch(event: TouchEvent): void {
+// Update endTouch to clean up properly
+  endTouch(event: TouchEvent, slotIndex?: number): void {
     if (!this.touchStartElement || this.touchStartWord === '') return;
+
+    event.preventDefault();
 
     const element = this.touchStartElement as HTMLElement;
     const touch = event.changedTouches[0];
 
-    const dropZones = document.querySelectorAll('.drop-zone');
-    let targetIndex = -1;
-
-    dropZones.forEach((zone, index) => {
-      const rect = zone.getBoundingClientRect();
-      if (
-        touch.clientX >= rect.left &&
-        touch.clientX <= rect.right &&
-        touch.clientY >= rect.top &&
-        touch.clientY <= rect.bottom
-      ) {
-        targetIndex = index;
-      }
-    });
-
-    if (targetIndex !== -1) {
-      const wordIndex = this.words.indexOf(this.touchStartWord);
-      if (wordIndex !== -1) {
-        this.answerSlots[targetIndex] = this.touchStartWord;
-        this.words.splice(wordIndex, 1);
-        this.playSound('drop');
-      }
+    // Remove the clone element from the document
+    if (element.parentNode === document.body) {
+      document.body.removeChild(element);
     }
 
-    this.renderer.removeStyle(element, 'position');
-    this.renderer.removeStyle(element, 'left');
-    this.renderer.removeStyle(element, 'top');
-    this.renderer.removeStyle(element, 'zIndex');
+    // Get element at the touch point
+    const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (slotIndex !== undefined) {
+      this.handleDrop(slotIndex);
+    } else if (elementAtPoint) {
+      // Check for answer slot
+      const slotElement = elementAtPoint.closest('.answer-slot');
+      if (slotElement) {
+        const index = slotElement.getAttribute('data-index');
+        if (index) {
+          this.handleDrop(parseInt(index, 10));
+        }
+      } else if (elementAtPoint.closest('.word-bank')) {
+        this.returnWordToBank();
+      }
+    }
 
     this.touchStartElement = null;
     this.touchStartWord = '';
   }
 
+// Helper method to handle dropping a word to a slot
+  private handleDrop(slotIndex: number): void {
+    const existingWord = this.answerSlots[slotIndex];
+
+    // Check if word is already in a slot
+    let fromSlot = -1;
+    for (let i = 0; i < this.answerSlots.length; i++) {
+      if (this.answerSlots[i] === this.touchStartWord) {
+        fromSlot = i;
+        break;
+      }
+    }
+
+    if (fromSlot >= 0) {
+      // Moving from one slot to another
+      this.answerSlots[fromSlot] = '';
+      this.feedback[fromSlot] = '';
+
+      if (existingWord) {
+        this.answerSlots[fromSlot] = existingWord;
+      }
+
+      this.answerSlots[slotIndex] = this.touchStartWord;
+    } else {
+      // From word pool to slot
+      const wordIndex = this.words.indexOf(this.touchStartWord);
+
+      if (wordIndex !== -1) {
+        if (existingWord) {
+          this.words.push(existingWord);
+        }
+
+        this.answerSlots[slotIndex] = this.touchStartWord;
+        this.words.splice(wordIndex, 1);
+      }
+    }
+
+    this.playSound('drop');
+  }
+
+// Return word to the word bank
+  private returnWordToBank(): void {
+    // Find which slot had the word
+    let fromSlot = -1;
+    for (let i = 0; i < this.answerSlots.length; i++) {
+      if (this.answerSlots[i] === this.touchStartWord) {
+        fromSlot = i;
+        break;
+      }
+    }
+
+    if (fromSlot >= 0) {
+      this.words.push(this.touchStartWord);
+      this.answerSlots[fromSlot] = '';
+      this.feedback[fromSlot] = '';
+      this.playSound('drop');
+    }
+  }
+
   closeInfoModal(): void {
-    this.playSound('check'); // Fixed: Using existing playSound method instead of undefined playButtonSound
+    this.playSound('check');
     this.showInfoModal = false;
     this.hasShownInfoModal = true;
   }
+
+
 }
