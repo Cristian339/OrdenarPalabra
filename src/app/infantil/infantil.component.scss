@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
+
 .pagina-completa {
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,13 +10,12 @@
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   transition: background-image 0.5s ease;
   font-family: 'Fredoka One', cursive;
   position: relative;
 }
-
 
 .intentos-container {
   position: absolute;
