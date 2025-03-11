@@ -27,7 +27,7 @@ export class InicioComponent implements OnInit {
     addIcons({ pencil, informationCircleOutline, closeCircle, happyOutline, schoolOutline });
 
     // Initialize audio
-    this.backgroundMusic = new Audio('assets/sonidos/happy-kids-music-307326.mp3');
+    this.backgroundMusic = new Audio('src/assets/sonidos/happy-kids-music-307326.mp3');
     this.backgroundMusic.loop = true;
     this.backgroundMusic.volume = 0.4;
 

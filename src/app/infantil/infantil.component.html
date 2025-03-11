@@ -1,3 +1,23 @@
+
+<div class="modal-overlay" *ngIf="showInfoModal && !hasShownInfoModal">
+  <div class="info-modal">
+    <div class="info-image-container">
+      <img [src]="infoImage" class="info-image" alt="Instrucciones">
+      <div class="info-overlay-text">
+        <h2>¡Bienvenido!</h2>
+        <p>Arrastra las silabas a los espacios en blanco para formar la palabra correcta.</p>
+        <p>Haz clic en "Verificar" cuando estés listo para responder.</p>
+        <p>Tienes intentos limitados, ¡así que piénsalo bien!</p>
+        <p class="info-highlight">¡Ordena las Silabas!</p>
+      </div>
+    </div>
+    <ion-button class="accept-button" (click)="closeInfoModal()">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      Aceptar
+    </ion-button>
+  </div>
+</div>
+
 <div class="pagina-completa" [ngStyle]="{'background-image': 'url(' + fondo + ')'}">
   <!-- Header con el nombre del grupo -->
   <h1 class="nombre-grupo">{{ groupName }}</h1>
