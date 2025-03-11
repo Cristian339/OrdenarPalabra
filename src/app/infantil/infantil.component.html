@@ -25,13 +25,15 @@
     <img [src]="imagenes[palabraActualIndex]" alt="Imagen de la pregunta" class="imagen-pregunta">
   </div>
 
-  <!-- Sílabas y huecos -->
   <div class="juego-container">
     <div class="silabas-container">
       <div *ngFor="let silaba of silabas[palabraActualIndex]"
            class="silaba"
            draggable="true"
-           (dragstart)="onDragStart($event, silaba)">
+           (dragstart)="onDragStart($event, silaba)"
+           (touchstart)="onTouchStart($event, silaba)"
+           (touchmove)="onTouchMove($event)"
+           (touchend)="onTouchEnd($event)">
         {{ silaba }}
       </div>
     </div>
@@ -39,7 +41,9 @@
       <div *ngFor="let hueco of huecos; let huecoIndex = index"
            class="hueco"
            (drop)="onDrop($event, huecoIndex)"
-           (dragover)="onDragOver($event)">
+           (dragover)="onDragOver($event)"
+           (touchmove)="onTouchMove($event)"
+           (touchend)="onTouchEnd($event, huecoIndex)">
         {{ hueco }}
       </div>
     </div>

@@ -1,15 +1,17 @@
 .game-container {
   width: 100%;
   height: 100%;
-  background-image: url('src/assets/Imagenes/palomas.webp');
-  background-size: cover;
+  background-image: url('src/assets/Imagenes/SanIgnacio.jpg');
+  background-size: auto; /* o un tamaño específico como 200px 200px */
   background-position: center;
+  background-repeat: repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
+
 
 
 .floating-elements {
