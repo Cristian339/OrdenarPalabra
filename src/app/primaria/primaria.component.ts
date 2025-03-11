@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import {IonicModule} from "@ionic/angular";
+import {arrowForward, checkmarkCircleOutline, heart, refreshOutline, trophy, star} from "ionicons/icons";
+import {addIcons} from "ionicons";
 
 @Component({
   selector: 'app-primaria',
@@ -33,6 +35,7 @@ export class PrimariaComponent implements OnInit {
   currentMaxScore: number = 0;
   currentQuestionNumber: number = 1;
   totalQuestions: number = 0;
+  showFailureModal: boolean = false;
 
   // Background images - using direct URLs like in the Infantil component
   backgroundImages: string[] = [
@@ -45,116 +48,116 @@ export class PrimariaComponent implements OnInit {
   ];
   currentBackground: string = '';
 
-  // Questions
   questions: any[] = [
     {
-      question: 'San Ignacio nació en...',
+      question: '¿Dónde nació San Ignacio?',
       correctAnswer: 'San Ignacio nació en España',
-      image: 'https://cdn.pixabay.com/photo/2019/03/22/09/38/spain-4072789_1280.jpg'
+      image: 'assets/images/spain.jpg'
     },
     {
-      question: 'San Ignacio fundó la...',
+      question: '¿Qué organización fundó San Ignacio?',
       correctAnswer: 'San Ignacio fundó la Compañía de Jesús',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/JHS-IHS-monogram-name-Jesus.svg/800px-JHS-IHS-monogram-name-Jesus.svg.png'
+      image: 'assets/images/jesuit-symbol.jpg'
     },
     {
-      question: 'San Ignacio escribió los...',
+      question: '¿Qué obra importante escribió San Ignacio?',
       correctAnswer: 'San Ignacio escribió los Ejercicios Espirituales',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Ejercicios_Espirituales_de_San_Ignacio_de_Loyola_1.jpg/800px-Ejercicios_Espirituales_de_San_Ignacio_de_Loyola_1.jpg'
+      image: 'assets/images/spiritual-exercises.jpg'
     },
     {
-      question: 'San Ignacio fue un...',
+      question: '¿Qué fue San Ignacio en la Iglesia?',
       correctAnswer: 'San Ignacio fue un santo católico',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Saint_Ignatius_of_Loyola.jpg/800px-Saint_Ignatius_of_Loyola.jpg'
+      image: 'assets/images/st-ignatius.jpg'
     },
     {
-      question: 'De joven, San Ignacio fue...',
+      question: '¿Qué profesión tuvo San Ignacio durante su juventud?',
       correctAnswer: 'De joven, San Ignacio fue soldado',
-      image: 'https://img.freepik.com/free-vector/knight-warrior-silhouette_23-2147501798.jpg'
+      image: 'assets/images/soldier.jpg'
     },
     {
-      question: 'Los jesuitas son seguidores de...',
+      question: '¿De quién son seguidores los jesuitas?',
       correctAnswer: 'Los jesuitas son seguidores de San Ignacio',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Monogram_of_the_Jesuits.svg/800px-Monogram_of_the_Jesuits.svg.png'
+      image: 'assets/images/jesuits.jpg'
     },
     {
-      question: 'San Ignacio estudió en la...',
+      question: '¿Dónde realizó sus estudios San Ignacio?',
       correctAnswer: 'San Ignacio estudió en la Universidad de París',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Sorbonne_France.JPG/1280px-Sorbonne_France.JPG'
+      image: 'assets/images/paris-university.jpg'
     },
     {
-      question: 'La fiesta de San Ignacio es el...',
+      question: '¿Cuándo se celebra la fiesta de San Ignacio?',
       correctAnswer: 'La fiesta de San Ignacio es el 31 de julio',
-      image: 'https://img.freepik.com/free-vector/flat-design-calendar-icon_23-2149511735.jpg'
+      image: 'assets/images/calendar.jpg'
     },
     {
-      question: 'San Ignacio tuvo una...',
+      question: '¿Qué experiencia cambió la vida de San Ignacio?',
       correctAnswer: 'San Ignacio tuvo una conversión religiosa',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Conv_San_Ignacio.jpg/800px-Conv_San_Ignacio.jpg'
+      image: 'assets/images/conversion.jpg'
     },
     {
-      question: 'San Ignacio rezaba diciendo...',
+      question: '¿Cuál era la frase habitual en las oraciones de San Ignacio?',
       correctAnswer: 'San Ignacio rezaba diciendo todo para mayor gloria de Dios',
-      image: 'https://cdn.pixabay.com/photo/2017/06/20/16/25/hands-2423801_1280.jpg'
+      image: 'assets/images/prayer.jpg'
     },
     {
-      question: 'Los colegios jesuitas educan a...',
+      question: '¿A quiénes educan los colegios jesuitas?',
       correctAnswer: 'Los colegios jesuitas educan a muchos niños',
-      image: 'https://cdn.pixabay.com/photo/2017/03/27/14/12/school-2179123_1280.jpg'
+      image: 'assets/images/school.jpg'
     },
     {
-      question: 'San Ignacio fue herido en...',
+      question: '¿En qué parte del cuerpo fue herido San Ignacio?',
       correctAnswer: 'San Ignacio fue herido en una pierna',
-      image: 'https://cdn.pixabay.com/photo/2017/01/31/22/58/first-aid-2027702_1280.png'
+      image: 'assets/images/leg-injury.jpg'
     },
     {
-      question: 'San Ignacio vivió en una...',
+      question: '¿En qué lugar especial vivió San Ignacio un tiempo?',
       correctAnswer: 'San Ignacio vivió en una cueva en Manresa',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/La_Santa_Cova.jpg/800px-La_Santa_Cova.jpg'
+      image: 'assets/images/cave.jpg'
     },
     {
-      question: 'El Papa aprobó la...',
+      question: '¿Qué organización religiosa aprobó el Papa?',
       correctAnswer: 'El Papa aprobó la Compañía de Jesús',
-      image: 'https://cdn.pixabay.com/photo/2015/10/08/14/23/crown-978076_1280.jpg'
+      image: 'assets/images/pope.jpg'
     },
     {
-      question: 'San Ignacio amaba la...',
+      question: '¿Qué valoraba especialmente San Ignacio para la sociedad?',
       correctAnswer: 'San Ignacio amaba la educación para todos',
-      image: 'https://cdn.pixabay.com/photo/2014/07/31/22/50/reading-407168_1280.jpg'
+      image: 'assets/images/education.jpg'
     },
     {
-      question: 'El lema de San Ignacio era...',
+      question: '¿Cuál era el lema principal de San Ignacio?',
       correctAnswer: 'El lema de San Ignacio era en todo amar y servir',
-      image: 'https://cdn.pixabay.com/photo/2019/12/12/09/09/heart-4689935_1280.jpg'
+      image: 'assets/images/heart.jpg'
     },
     {
-      question: 'San Ignacio ayudaba a los...',
+      question: '¿A qué grupos de personas ayudaba San Ignacio?',
       correctAnswer: 'San Ignacio ayudaba a los pobres y enfermos',
-      image: 'https://cdn.pixabay.com/photo/2017/09/07/20/29/charity-2726756_1280.png'
+      image: 'assets/images/charity.jpg'
     },
     {
-      question: 'San Ignacio enseñaba a...',
+      question: '¿Qué enseñanza espiritual promovía San Ignacio?',
       correctAnswer: 'San Ignacio enseñaba a encontrar a Dios en todo',
-      image: 'https://cdn.pixabay.com/photo/2018/05/02/21/37/nature-3370233_1280.jpg'
+      image: 'assets/images/spirituality.jpg'
     },
     {
-      question: 'San Ignacio viajó a...',
+      question: '¿A qué lugar sagrado viajó San Ignacio?',
       correctAnswer: 'San Ignacio viajó a Tierra Santa',
-      image: 'https://cdn.pixabay.com/photo/2019/07/18/10/09/jerusalem-4345461_1280.jpg'
+      image: 'assets/images/holy-land.jpg'
     },
     {
-      question: 'San Ignacio murió en...',
+      question: '¿Dónde falleció San Ignacio?',
       correctAnswer: 'San Ignacio murió en Roma',
-      image: 'https://cdn.pixabay.com/photo/2020/11/24/19/34/colosseum-5773684_1280.jpg'
+      image: 'assets/images/rome.jpg'
     }
   ];
 
   // Audio files
-  dragSoundUrl: string = 'https://www.soundjay.com/button/sounds/button-09.mp3';
-  dropSoundUrl: string = 'https://www.soundjay.com/button/sounds/button-10.mp3';
-  correctSoundUrl: string = 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3';
-  incorrectSoundUrl: string = 'https://www.soundjay.com/misc/sounds/fail-buzzer-03.mp3';
-  checkSoundUrl: string = 'https://www.soundjay.com/mechanical/sounds/page-flip-01a.mp3';
+
+  dragSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-32.mp3';
+  dropSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-31.mp3';
+  correctSoundUrl: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
+  incorrectSoundUrl: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
+  checkSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-33a.mp3';
 
   // Audio objects like in Infantil component
   dragSound: HTMLAudioElement;
@@ -169,6 +172,7 @@ export class PrimariaComponent implements OnInit {
   private slotDragSource: number = -1;
 
   constructor(private renderer: Renderer2) {
+    addIcons({checkmarkCircleOutline, refreshOutline, trophy, arrowForward, heart, star });
     // Preload sounds
     this.dragSound = new Audio(this.dragSoundUrl);
     this.dropSound = new Audio(this.dropSoundUrl);
@@ -178,9 +182,17 @@ export class PrimariaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.shuffleQuestions();
     this.totalQuestions = this.questions.length;
     this.currentBackground = this.getRandomBackground();
     this.setupQuestion();
+  }
+
+  shuffleQuestions(): void {
+    for (let i = this.questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+    }
   }
 
   // Get random background from the array
@@ -327,7 +339,6 @@ export class PrimariaComponent implements OnInit {
     }
   }
 
-  // Check answer
   checkAnswer(): void {
     this.playSound('check');
     this.attemptsLeft--;
@@ -350,7 +361,7 @@ export class PrimariaComponent implements OnInit {
     if (allCorrect) {
       this.score += 10;
       this.playSound('correct');
-      this.showFeedback('¡Excelente! ¡Lo lograste!', 'checkmark-circle', 'success');
+      this.showFeedback('¡Excelente! ¡Lo lograste!', 'checkmark-circle', 'success', 3500);
 
       setTimeout(() => {
         this.showSuccessModal = true;
@@ -360,35 +371,35 @@ export class PrimariaComponent implements OnInit {
 
       if (this.attemptsLeft <= 0) {
         this.showFeedback('¡Se acabaron los intentos! La respuesta correcta era: ' +
-          currentQuestion.correctAnswer, 'close-circle', 'error');
+          currentQuestion.correctAnswer, 'close-circle', 'error', 5000);
 
         setTimeout(() => {
           this.showSuccessModal = true;
-        }, 3000);
+        }, 5000); // Increased to 5 seconds
       } else {
         const percentCorrect = (correctCount / correctAnswerWords.length) * 100;
 
         if (percentCorrect > 50) {
-          this.showFeedback('¡Casi lo tienes! Inténtalo de nuevo.', 'alert-circle', 'warning');
+          this.showFeedback('¡Casi lo tienes! Inténtalo de nuevo.', 'alert-circle', 'warning', 3500);
         } else {
           this.showFeedback('Sigue intentando. Te queda ' + this.attemptsLeft +
             ' intento' + (this.attemptsLeft > 1 ? 's' : ''),
-            'refresh-circle', 'warning');
+            'refresh-circle', 'warning', 3500);
         }
       }
     }
   }
 
-  // Show feedback message
-  showFeedback(message: string, icon: string, type: 'success' | 'error' | 'warning'): void {
+  showFeedback(message: string, icon: string, type: 'success' | 'error' | 'warning', duration: number = 3500): void {
     this.feedbackMessage = message;
     this.feedbackIcon = icon;
     this.showFeedbackModal = true;
 
     setTimeout(() => {
       this.showFeedbackModal = false;
-    }, 3500);
+    }, duration);
   }
+
 
   // Move to next question
   nextQuestion(): void {
