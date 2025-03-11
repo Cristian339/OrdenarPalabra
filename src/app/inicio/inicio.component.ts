@@ -27,17 +27,19 @@ export class InicioComponent implements OnInit {
     addIcons({ pencil, informationCircleOutline, closeCircle, happyOutline, schoolOutline });
 
     // Initialize audio
-    this.backgroundMusic = new Audio('assets/sonidos/background-children.mp3');
+    this.backgroundMusic = new Audio('assets/sonidos/happy-kids-music-307326.mp3');
     this.backgroundMusic.loop = true;
     this.backgroundMusic.volume = 0.4;
 
     // Updated click sound URL as requested
     this.clickSound = new Audio('https://www.soundjay.com/buttons/sounds/button-33a.mp3');
     this.typingSound = new Audio('assets/sonidos/typing.mp3');
+
   }
 
   ngOnInit() {
     this.playBackgroundMusic();
+
   }
 
   playBackgroundMusic() {

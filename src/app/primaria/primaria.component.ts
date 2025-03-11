@@ -46,21 +46,27 @@ export class PrimariaComponent implements OnInit {
 
 
   backgroundImages: string[] = [
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
-    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
-    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
-    'https://static.wixstatic.com/media/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg/v1/fill/w_725,h_559,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg',
-    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
-    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
-    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
-    'https://imgs.search.brave.com/TCpwFje-8kTX-mHu69PrlvJtXlGFhPjReUoxxHAIi6I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM3/MDkxNjUwMy9lcy9m/b3RvL2NoaWxkcy1k/cmF3aW5nLW9mLXN1/bnMtc2VhbWxlc3Mt/cGF0dGVybi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WGF3/QXIwanZoX2FTcXdk/VEJLa0l4OUU4Q3pu/NEk1LWp4SW1qdHNm/Y0w2cz0\n',
-    'https://imgs.search.brave.com/Gzo2M3ot-YWA3s19Iq5zQm250ci5Rt7C2oe7eNqtvKA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHNkLWdyYXRpcy9m/b25kby1tYXRlcm5p/ZGFkLWJhYnktc2hv/d2VyXzIzLTIxNTAy/MzcyMzEuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA',
-    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
-    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
-    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
-    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9'
+    'https://st4.depositphotos.com/1763191/40189/v/450/depositphotos_401892196-stock-illustration-jesus-children-park-illustration.jpg',
+    'https://png.pngtree.com/thumb_back/fh260/background/20230516/pngtree-in-the-style-of-lush-landscape-backgrounds-image_2563946.jpg',
+    'https://t4.ftcdn.net/jpg/07/43/98/11/360_F_743981194_ihotpsJIjrrLoEYbrWG8m7j74KH5y5aE.jpg',
+    'https://i.pinimg.com/550x/6a/c8/96/6ac896f076d8e4843699052ff5d826b7.jpg',
+    'https://serjesuita.co/images/actualidad/ignacio-modelo-para-la-compania-y-el-mundo-por-p-pedro-arrupe-sj.jpg',
+    'https://t3.ftcdn.net/jpg/07/17/39/80/360_F_717398008_IFdzJdgjqsRKDkQw1hsJgYNmdusVDssu.jpg',
+    'https://cantaycamina.net/wp-content/uploads/2021/08/San-Ignacio-de-Loyola-500.jpg',
+    'https://st4.depositphotos.com/1763191/40189/v/450/depositphotos_401892196-stock-illustration-jesus-children-park-illustration.jpg',
+    'https://png.pngtree.com/thumb_back/fh260/background/20230516/pngtree-in-the-style-of-lush-landscape-backgrounds-image_2563946.jpg',
+    'https://t4.ftcdn.net/jpg/07/43/98/11/360_F_743981194_ihotpsJIjrrLoEYbrWG8m7j74KH5y5aE.jpg',
+    'https://i.pinimg.com/550x/6a/c8/96/6ac896f076d8e4843699052ff5d826b7.jpg',
+    'https://serjesuita.co/images/actualidad/ignacio-modelo-para-la-compania-y-el-mundo-por-p-pedro-arrupe-sj.jpg',
+    'https://t3.ftcdn.net/jpg/07/17/39/80/360_F_717398008_IFdzJdgjqsRKDkQw1hsJgYNmdusVDssu.jpg',
+    'https://cantaycamina.net/wp-content/uploads/2021/08/San-Ignacio-de-Loyola-500.jpg',
+    'https://st4.depositphotos.com/1763191/40189/v/450/depositphotos_401892196-stock-illustration-jesus-children-park-illustration.jpg',
+    'https://png.pngtree.com/thumb_back/fh260/background/20230516/pngtree-in-the-style-of-lush-landscape-backgrounds-image_2563946.jpg',
+    'https://t4.ftcdn.net/jpg/07/43/98/11/360_F_743981194_ihotpsJIjrrLoEYbrWG8m7j74KH5y5aE.jpg',
+    'https://i.pinimg.com/550x/6a/c8/96/6ac896f076d8e4843699052ff5d826b7.jpg',
+    'https://serjesuita.co/images/actualidad/ignacio-modelo-para-la-compania-y-el-mundo-por-p-pedro-arrupe-sj.jpg',
+    'https://t3.ftcdn.net/jpg/07/17/39/80/360_F_717398008_IFdzJdgjqsRKDkQw1hsJgYNmdusVDssu.jpg',
+    'https://cantaycamina.net/wp-content/uploads/2021/08/San-Ignacio-de-Loyola-500.jpg'
   ];
   currentBackground: string = '';
 

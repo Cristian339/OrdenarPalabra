@@ -42,8 +42,7 @@
            class="hueco"
            (drop)="onDrop($event, huecoIndex)"
            (dragover)="onDragOver($event)"
-           (touchmove)="onTouchMove($event)"
-           (touchend)="onTouchEnd($event, huecoIndex)">
+           (touchend)="onTouchEnd($event, huecoIndex)"> <!-- Pasar huecoIndex aquí -->
         {{ hueco }}
       </div>
     </div>
