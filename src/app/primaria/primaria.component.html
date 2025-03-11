@@ -1,3 +1,23 @@
+<!-- Info modal that shows on game start -->
+<div class="modal-overlay" *ngIf="showInfoModal && !hasShownInfoModal">
+  <div class="info-modal">
+    <div class="info-image-container">
+      <img [src]="infoImage" class="info-image" alt="Instrucciones">
+      <div class="info-overlay-text">
+        <h2>¡Bienvenido!</h2>
+        <p>Arrastra las palabras a los espacios en blanco para formar una frase correcta.</p>
+        <p>Haz clic en "Comprobar" cuando estés listo para verificar tu respuesta.</p>
+        <p>Tienes intentos limitados, ¡así que piénsalo bien!</p>
+        <p class="info-highlight">¡Ordena las Palabras!</p>
+      </div>
+    </div>
+    <ion-button class="accept-button" (click)="closeInfoModal()">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      Aceptar
+    </ion-button>
+  </div>
+</div>
+
 <div class="game-container" [ngStyle]="{'background-image': 'url(' + currentBackground + ')'}">
   <!-- Top navigation bar with question number, group name and attempts -->
   <div class="top-nav">
@@ -15,6 +35,8 @@
       <span class="attempts-text">{{ attemptsLeft }}</span>
     </div>
   </div>
+
+
 
   <!-- Question text -->
   <div class="question-text">{{ questions[currentQuestionIndex].question }}</div>
