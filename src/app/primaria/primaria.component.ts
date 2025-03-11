@@ -216,7 +216,7 @@ export class PrimariaComponent implements OnInit {
 
     this.backgroundMusic = new Audio('assets/sonidos/happy-kids-music-307326.mp3');
     this.backgroundMusic.loop = true;
-    this.backgroundMusic.volume = 0.4;
+    this.backgroundMusic.volume = 0.1;
 
 
 
