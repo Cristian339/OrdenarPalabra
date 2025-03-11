@@ -116,26 +116,27 @@ export class InfantilComponent implements OnInit {
     'https://imgs.search.brave.com/cYjxnvFfLLeGevVENHSq98ethjF5Rbi-MGUhrXd0x-I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2VzdGFzZGVtaW1i/cmUuY29tL3VwbG9h/ZHMvY2VzdGFzZGVt/aW1icmUvcHJvZHVj/dG9zL21fNzUwNDdf/VGFyamV0YV9lbmhv/cmFidWVuYV9mbG9y/ZXMuanBn'
   ];
   fondos: string[] = [
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-nubes-arcoiris_23-2148889945.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-animales-divertidos_23-2148889950.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-estrellas-lunas_23-2148889955.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-arboles-flores_23-2148889960.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-globos-confeti_23-2148889965.jpg',
     'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-peces-burbujas_23-2148889975.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-montanas-sol_23-2148889980.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-aviones-nubes_23-2148889985.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-dinosaurios-volcanes_23-2148889990.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-unicornios-arcoiris_23-2148889995.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-coches-carreteras_23-2148890000.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-planetas-estrellas_23-2148890005.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-barcos-olas_23-2148890010.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-castillos-dragones_23-2148890015.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-helados-dulces_23-2148890020.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-juguetes-peluches_23-2148890025.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-flores-mariposas_23-2148890030.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-pajaros-arboles_23-2148890035.jpg',
-    'https://img.freepik.com/vector-gratis/fondo-acuarela-ninos-jugando_23-2148890040.jpg'
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://static.wixstatic.com/media/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg/v1/fill/w_725,h_559,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg',
+    'https://imgs.search.brave.com/TCpwFje-8kTX-mHu69PrlvJtXlGFhPjReUoxxHAIi6I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM3/MDkxNjUwMy9lcy9m/b3RvL2NoaWxkcy1k/cmF3aW5nLW9mLXN1/bnMtc2VhbWxlc3Mt/cGF0dGVybi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WGF3/QXIwanZoX2FTcXdk/VEJLa0l4OUU4Q3pu/NEk1LWp4SW1qdHNm/Y0w2cz0\n',
+    'https://imgs.search.brave.com/Gzo2M3ot-YWA3s19Iq5zQm250ci5Rt7C2oe7eNqtvKA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHNkLWdyYXRpcy9m/b25kby1tYXRlcm5p/ZGFkLWJhYnktc2hv/d2VyXzIzLTIxNTAy/MzcyMzEuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://static.wixstatic.com/media/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg/v1/fill/w_725,h_559,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg',
+    'https://imgs.search.brave.com/TCpwFje-8kTX-mHu69PrlvJtXlGFhPjReUoxxHAIi6I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM3/MDkxNjUwMy9lcy9m/b3RvL2NoaWxkcy1k/cmF3aW5nLW9mLXN1/bnMtc2VhbWxlc3Mt/cGF0dGVybi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WGF3/QXIwanZoX2FTcXdk/VEJLa0l4OUU4Q3pu/NEk1LWp4SW1qdHNm/Y0w2cz0\n',
+    'https://imgs.search.brave.com/Gzo2M3ot-YWA3s19Iq5zQm250ci5Rt7C2oe7eNqtvKA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHNkLWdyYXRpcy9m/b25kby1tYXRlcm5p/ZGFkLWJhYnktc2hv/d2VyXzIzLTIxNTAy/MzcyMzEuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9',
+    'https://img.freepik.com/vector-gratis/fondo-acuarela-mariposas-flores_23-2148889970.jpg',
+    'https://imgs.search.brave.com/Y860ZjTz-9b92HL3TFcG6AQEqJn4RkKvk1EC8x0q8xw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wYXJlZC1jb3Jh/em9uZXMtZXN0cmVs/bGFzLWZvbmRvLXJv/c2FfODY3MjU1LTMy/NS5qcGc_c2VtdD1h/aXNfaHlicmlk',
+    'https://imgs.search.brave.com/yXWZGQNuVowjIxU2qPmWk6LluYhSVeUjNIFovZ8eAiA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzYxLzg2Lzk1/LzM2MF9GXzg2MTg2/OTUyOV9MajFwd0FF/YWNQV2x5UlZQNGR2/aXJSWjlKbEk1Y0Zh/OC5qcGc',
+    'https://static.wixstatic.com/media/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg/v1/fill/w_725,h_559,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b39505_9145786146ee41e894beb23b880c1ab5~mv2.jpg',
+    'https://imgs.search.brave.com/TCpwFje-8kTX-mHu69PrlvJtXlGFhPjReUoxxHAIi6I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM3/MDkxNjUwMy9lcy9m/b3RvL2NoaWxkcy1k/cmF3aW5nLW9mLXN1/bnMtc2VhbWxlc3Mt/cGF0dGVybi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9WGF3/QXIwanZoX2FTcXdk/VEJLa0l4OUU4Q3pu/NEk1LWp4SW1qdHNm/Y0w2cz0\n',
+    'https://imgs.search.brave.com/Gzo2M3ot-YWA3s19Iq5zQm250ci5Rt7C2oe7eNqtvKA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHNkLWdyYXRpcy9m/b25kby1tYXRlcm5p/ZGFkLWJhYnktc2hv/d2VyXzIzLTIxNTAy/MzcyMzEuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZA',
+    'https://imgs.search.brave.com/wE881Zj1EUbqD6w_2wBQDQEvKo8X4nBVXPP-T5VZlpo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjIx/MTM2MjI2L2VzL2Zv/dG8vZWwtdG95LWVz/dCVDMyVBMS1zZW50/YWRvLWVuLWxvcy1w/YSVDMyVCMWFsZXMu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVJ3aW5LU2lNRmQy/X012NWhjdEI1ZHdj/ZWNqbmxCeWkzd204/UERvODhjemc9'
   ];
   huecos: string[] = [];
   palabraActualIndex: number = 0;
@@ -149,15 +150,22 @@ export class InfantilComponent implements OnInit {
   // URLs de sonidos (reemplaza con tus propios archivos si es necesario)
   sonidoCorrecto: string = 'https://www.soundjay.com/misc/sounds/magic-chime-02.mp3';
   sonidoIncorrecto: string = 'https://www.soundjay.com/misc/sounds/fail-trombone-03.mp3';
+  dragSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-32.mp3';
+  dropSoundUrl: string = 'https://www.soundjay.com/buttons/sounds/button-31.mp3';
 
   // Objetos de audio para precargar los sonidos
   audioCorrecto: HTMLAudioElement;
   audioIncorrecto: HTMLAudioElement;
+  dragSound: HTMLAudioElement;
+  dropSound: HTMLAudioElement;
+
 
   constructor(private route: ActivatedRoute) {
     // Precargar los sonidos
     this.audioCorrecto = new Audio(this.sonidoCorrecto);
     this.audioIncorrecto = new Audio(this.sonidoIncorrecto);
+    this.dragSound = new Audio(this.dragSoundUrl);
+    this.dropSound = new Audio(this.dropSoundUrl);
   }
 
   ngOnInit() {
@@ -175,10 +183,12 @@ export class InfantilComponent implements OnInit {
 
   onDragStart(event: DragEvent, silaba: string) {
     event.dataTransfer?.setData('text/plain', silaba);
+    this.reproducirSonido(this.dragSound);
   }
 
   onDrop(event: DragEvent, huecoIndex: number) {
     event.preventDefault();
+    this.reproducirSonido(this.dropSound);
     const silaba = event.dataTransfer?.getData('text/plain');
     if (silaba) {
       this.huecos[huecoIndex] = silaba;
