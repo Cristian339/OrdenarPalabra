@@ -68,6 +68,7 @@ export class PrimariaComponent implements OnInit {
     'https://t3.ftcdn.net/jpg/07/17/39/80/360_F_717398008_IFdzJdgjqsRKDkQw1hsJgYNmdusVDssu.jpg',
     'https://cantaycamina.net/wp-content/uploads/2021/08/San-Ignacio-de-Loyola-500.jpg'
   ];
+
   currentBackground: string = '';
 
   questions: any[] = [{
@@ -126,7 +127,7 @@ export class PrimariaComponent implements OnInit {
       question: '¿Cuál era el objetivo de la Compañía de Jesús?',
       correctAnswer: 'Su objetivo era acercar a las personas a Dios',
       image: '/assets/ImagenesPreg/12.jpg'
-      /*sdfsdfds*/
+
     },
     {
       question: '¿Qué es ser un jesuita?',
@@ -242,6 +243,7 @@ export class PrimariaComponent implements OnInit {
       [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
     }
   }
+
 
   getRandomBackground(): string {
     const index = Math.floor(Math.random() * this.backgroundImages.length);
