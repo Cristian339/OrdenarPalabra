@@ -52,26 +52,32 @@
     <div class="answer-slots-container">
       <div *ngFor="let slot of answerSlots; let i = index"
            class="answer-slot"
+           [attr.data-index]="i"
            [ngClass]="{'highlight': isDraggedOver === i, 'correct': feedback[i] === 'correct', 'incorrect': feedback[i] === 'incorrect'}"
            (drop)="drop($event, i)"
            (dragover)="allowDrop($event); setDraggedOver(i)"
            (dragleave)="setDraggedOver(-1)"
            draggable="true"
-           (dragstart)="slot ? drag($event, slot, i) : null">
+           (dragstart)="slot ? drag($event, slot, i) : null"
+           (touchstart)="slot ? startTouch($event, slot) : null"
+           (touchmove)="moveTouch($event)"
+           (touchend)="endTouch($event, i)">
         {{ slot }}
       </div>
     </div>
 
 
-    <div class="word-bank" (dragover)="allowDrop($event)" (drop)="dropToPool($event)">
-      <div *ngFor="let word of words"
-           class="word-item"
-           draggable="true"
-           (dragstart)="drag($event, word)">
-        {{ word }}
+      <div class="word-bank" (dragover)="allowDrop($event)" (drop)="dropToPool($event)">
+          <div *ngFor="let word of words"
+               class="word-item"
+               draggable="true"
+               (dragstart)="drag($event, word)"
+               (touchstart)="startTouch($event, word)"
+               (touchmove)="moveTouch($event)"
+               (touchend)="endTouch($event)">
+              {{ word }}
+          </div>
       </div>
-    </div>
-  </div>
 
 
   <div class="controls-container">

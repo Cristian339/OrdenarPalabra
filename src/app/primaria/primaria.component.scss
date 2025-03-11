@@ -310,7 +310,6 @@
   cursor: grabbing;
 }
 
-
 .controls-container {
   display: flex;
   justify-content: center;
@@ -651,4 +650,12 @@
   --padding-start: 25px;
   --padding-end: 25px;
   margin-top: 20px;
+}
+
+.touch-dragging {
+  background-color: #0a2840;
+  border: 2px solid #1458a8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
